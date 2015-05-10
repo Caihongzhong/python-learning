@@ -1,0 +1,117 @@
+Python 语言：解释型语言，不用编译，
+缺点：运行速度慢
+优点：开发速度快，代码少
+
+
+Python：跨平台语言
+下载网站：www.python.org python2.7.x
+
+首行不能有空格
+
+Python数据类型：
+1、整数
+2、浮点数
+3、字符串
+4、布尔值
+一个布尔值只有True和False两个值
+逻辑运算符：and、or、not
+5、空值
+空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，
+而None是一个特殊的空值。
+
+代码：
+在python中，十进制整数和十六进制数可以直接相加
+#Enter a code
+print 45678 + 0x12fd2
+print "Learn Python in imooc"
+print 100 < 99
+print 0xff == 255
+
+代码：
+print遇到逗号“,”，会输出一个空格
+#input code
+print "hello, python"
+print "hello,","python"
+
+代码：
+求等差数列前100项的和
+x1 = 1
+d = 3
+n = 100
+x100 = x1 + (n - 1) * d
+s = (x1 + x100) * n / 2
+print s
+
+代码：
+r'''...'''表示把字符串也变成一个raw字符串
+print r'''"To be, or not to be": that is the question.
+Whether it's nobler in the mind to suffer.'''
+
+代码：
+python把0、空字符串''、和None看成False，其他数值和非空字符串都看成True；
+and 和 or 运算的一条重要法则：短路运算：
+1. 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。
+2. 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。
+
+a = 'python'
+print 'hello,', a or 'world'
+
+b = ''
+print 'hello,', b or 'world'
+
+结果：
+hello, python
+
+hello, world
+
+代码：
+创建list，由于Python是动态语言，所以list中包含的元素并不要求都必须是同一种数据类型，我们完全可以在list中包含各种数据：
+L = ['Adam', 95.5, 'Lisa', 85, 'Bart', 59]
+print L
+
+结果：
+['Adam', 95.5, 'Lisa', 85, 'Bart', 59]
+
+代码：
+append()方法添加新的元素到列表的末尾，insert()方法指定两个参数，添加新的元素到指定的索引中
+L = ['Adam', 'Lisa', 'Bart']
+L.insert(2, 'Paul')
+print L
+
+结果：
+ ['Adam', 'Lisa', 'Paul', 'Bart']
+
+
+代码：
+pop()方法总是删掉list的最后一个元素，并且它还返回这个元素；pop()还可以指定删除元素的索引
+L = ['Adam', 'Lisa', 'Paul', 'Bart']
+L.pop(2)
+L.pop(2)
+print L
+
+结果：
+['Adam', 'Lisa']
+
+
+代码：
+替换元素
+L = ['Adam', 'Lisa', 'Bart']
+L[0] = 'Bart'
+L[-1] = 'Adam'
+print L
+
+结果：
+['Bart', 'Lisa', 'Adam']
+
+
+代码：
+创建单元素tuple
+t = ('Adam',)
+print t
+
+
+
+
+
+
+
