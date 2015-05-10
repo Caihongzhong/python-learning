@@ -110,6 +110,187 @@ t = ('Adam',)
 print t
 
 
+代码：
+tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向'a'，就不能改成指向'b'，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！
+t = ('a', 'b', ['A', 'B'])
+L = t[2]
+L[0] = 'X'
+L[1] = 'Y'
+print t
+('a', 'b', ['X', 'Y'])
+
+代码：
+for循环
+L = [75, 92, 59, 68]
+sum = 0.0
+for score in L:
+    sum += score
+print sum / 4
+
+
+代码：
+while循环
+sum = 0
+x = 1
+while x <= 100:
+    sum += x
+    x += 2
+print sum
+
+
+代码：
+break退出循环
+sum = 0
+x = 1
+n = 1
+while True:
+    sum += x
+    x = x * 2
+    n += 1
+    if n >20:
+        break
+print sum
+
+代码：
+continue跳过后续循环代码，继续下一次循环。
+sum = 0
+x = 0
+while True:
+    x = x + 1
+    if x > 100:
+        break
+    if x % 2 == 0:
+        continue
+    sum += x
+print sum
+
+知识点：python中print句末会自动换行，若不想让它自动换行，python2的使用方式是在句末添加,符号。
+
+
+代码：
+多重循环：
+for x in [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]:
+    for y in [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]:
+        if x < y:
+            print x + y,
+
+
+代码：
+dict字典：key-value对
+d = {
+    
+    'Adam': 95,
+    'Lisa': 85,
+    'Bart': 59,
+    'Paul': 75
+}
+
+
+代码：
+访问dict
+d = {
+    'Adam': 95,
+    'Lisa': 85,
+    'Bart': 59
+}
+print 'Adam:', d['Adam']
+print 'Lisa:', d['Lisa']
+print 'Bart:', d['Bart']
+
+注：字符串类型和int型数据不能直接相加
+
+
+知识点：
+dict的特点
+1、dict的第一个特点是查找速度快，无论dict有10个元素还是10万个元素，查找速度都一样。而list的查找速度随着元素增加而逐渐下降。
+dict的缺点是占用内存大，还会浪费很多内容，list正好相反，占用内存小，但是查找速度慢。
+2、dict的第二个特点就是存储的key-value序对是没有顺序的！不能用dict存储有序的集合。
+3、dict的第三个特点是作为 key 的元素必须不可变，Python的基本类型如字符串、整数、浮点数都是不可变的，都可以作为 key。
+但是list是可变的，就不能作为 key。
+
+
+代码：
+更新dict，增加新的key-value对，或者更新已有的key的value值
+d = {
+    95: 'Adam',
+    85: 'Lisa',
+    59: 'Bart'
+}
+d[72] = 'Paul'
+
+
+代码：
+set的创建，创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素
+s = set(['Adam', 'Lisa', 'Bart', 'Paul'])
+
+
+知识点：
+1、list中的元素适可重复的，list是有序的；
+2、dict中的key是不可重复的，dict是无序的；
+3、set中的元素是没有重复的，set中的元素是无序的；当我们传入包含重复元素的list时，set会自动去掉重复的元素。
+set存储的元素和dict的key类似，必须是不变对象，因此，任何可变对象是不能放入set中的。
+
+
+代码：
+访问set
+s = set(['Adam', 'Lisa', 'Bart', 'Paul', 'adam', 'lisa', 'bart', 'paul'])
+print 'adam' in s
+print 'bart' in s
+
+
+代码：
+set的用法
+months = set(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+x1 = 'Feb'
+x2 = 'Sun'
+
+if x1 in months:
+    print 'x1: ok'
+else:
+    print 'x1: error'
+
+if x2 in months:
+    print 'x2: ok'
+else:
+    print 'x2: error'
+
+
+代码：
+遍历set，结合了tuple的使用
+s = set([('Adam', 95), ('Lisa', 85), ('Bart', 59)])
+for x in s:
+    print x[0]+':', x[1]
+
+结果：
+Lisa: 85
+
+Adam: 95
+
+Bart: 59
+
+
+代码：
+更新set，一是把新的元素添加到set中，二是把已有元素从set中删除。添加元素时，用set的add()方法，删除set中的元素时，用set的remove()方法。
+s = set(['Adam', 'Lisa', 'Paul'])
+L = ['Adam', 'Lisa', 'Bart', 'Paul']
+for name in L:
+    if name in s:
+        s.remove(name)
+    else:
+        s.add(name)
+print s
+
+结果：
+set(['Bart'])
+
+
+
+
+
+
+
+
+
 
 
 
