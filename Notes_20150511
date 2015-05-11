@@ -1,0 +1,340 @@
+代码：
+函数调用，sum()函数接受一个list作为参数，并返回list所有元素之和。请计算 1*1 + 2*2 + 3*3 + ... + 100*100。
+L = []
+for x in range(1, 101):
+    L.append(x * x)
+print sum(L)
+
+
+
+代码：
+请定义一个 square_of_sum 函数，它接受一个list，返回list中每个元素平方的和。
+def square_of_sum(L):
+    sum = 0
+    for x in L:
+        sum = sum + x * x
+    return sum
+print square_of_sum([1, 2, 3, 4, 5])
+print square_of_sum([-5, 0, 5, 15, 25])
+
+结果：
+55
+
+900
+
+
+
+代码：
+一元二次方程的定义是：ax² + bx + c = 0。请编写一个函数，返回一元二次方程的两个解。
+注意：Python的math包提供了sqrt()函数用于计算平方根。
+import math
+
+def quadratic_equation(a, b, c):
+    x = (-b + math.sqrt(b * b - 4 * a * c)) / (2 * a)
+    y =  (-b - math.sqrt(b * b - 4 * a * c)) / (2 * a)
+    return x, y
+    
+
+print quadratic_equation(2, 3, 0)
+print quadratic_equation(1, -6, 5)
+
+
+结果：
+(0.0, -1.5)
+
+(5.0, 1.0)
+
+
+
+代码：
+递归函数，汉诺塔 (http://baike.baidu.com/view/191666.htm) 的移动也可以看做是递归函数。我们对柱子编号为a, b, c，将所有圆盘从a移到c可以描述为：
+如果a只有一个圆盘，可以直接移动到c；如果a有N个圆盘，可以看成a有1个圆盘（底盘） + (N-1)个圆盘，首先需要把 (N-1) 个圆盘移动到 b，然后，将 a的最后
+
+一个圆盘移动到c，再将b的(N-1)个圆盘移动到c。请编写一个函数，给定输入 n, a, b, c，打印出移动的步骤：
+move(n, a, b, c)
+def move(n, a, b, c):
+    if n == 1:
+        print a, '-->', c
+        return
+    move(n-1, a, c, b)
+    print a, '-->', c
+    move(n-1, b, a, c)
+    
+
+move(4, 'A', 'B', 'C')
+
+
+
+代码：
+定义默认参数
+def greet(name = 'world'):
+    print 'Hello,' + name + '.'
+
+greet()
+greet('Bart')
+
+结果：
+Hello,world.
+
+Hello,Bart.
+
+
+
+代码：
+定义可变参数，请编写接受可变参数的 average() 函数。
+def average(*args):
+    sum = 0.0
+    if len(args) == 0:
+        return 0.0
+    else:
+        for num in args:
+            sum = sum + num
+    return sum / len(args)
+        
+
+print average()
+print average(1, 2)
+print average(1, 2, 2, 3, 4)
+
+
+知识点：
+Python解释器会把传入的一组参数组装成一个tuple传递给可变参数，因此，在函数内部，直接把变量args看成一个tuple。
+
+知识点：
+求元组tuple的长度：len()函数。
+
+
+代码：
+L = range(1, 101)
+
+print L[0 : 10]
+print L[2:100:3]
+print L[4:50:5]
+
+结果：
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+[3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 99]
+
+[5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+
+
+
+代码：
+倒序切片：利用倒序切片对 1 - 100 的数列取出：
+* 最后10个数；
+* 最后10个5的倍数。
+L = range(1, 101)
+print L[-10:]
+print L[-46::5]
+
+结果：
+[91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+
+[55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
+
+
+知识点：
+倒序切片，倒数第一个元素的索引是-1.倒序切片包含起始索引，不包含结束索引。
+
+
+
+
+代码：
+def firstCharUpper(s):
+    return s[0].upper() + s[1:]
+    
+
+print firstCharUpper('hello')
+print firstCharUpper('sunday')
+print firstCharUpper('september')
+
+结果：
+Hello
+
+Sunday
+
+September
+
+
+
+代码：
+for i in range(1, 101):
+    if i % 7 == 0:
+        print i
+
+
+知识点：
+Python的for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。
+集合是指包含一组元素的数据结构，包括：
+1. 有序集合：list，tuple，str和unicode；
+2. 无序集合：set
+3. 无序集合并且具有 key-value 对：dict
+
+
+
+代码：
+L = ['Adam', 'Lisa', 'Bart', 'Paul']
+for index, name in zip(range(1, 5), L):
+    print index, '-', name
+
+
+结果：
+1 - Adam
+
+2 - Lisa
+
+3 - Bart
+
+4 - Paul
+
+
+知识点：
+1、zip()函数可以把两个 list 变成一个 list：
+>>> zip([10, 20, 30], ['A', 'B', 'C'])
+[(10, 'A'), (20, 'B'), (30, 'C')]
+
+2、enumerate() 函数，我们可以在for循环中同时绑定索引index和元素name。函数返回的是一个tuple元组。
+
+
+
+代码：
+d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 }
+
+sum = 0.0
+for score in d.values():
+    sum = sum + score
+print sum / len(d)
+
+
+知识点：
+1.dict对象有一个values()方法，这个方法把dict转换成一个包含所有value的list。
+2. 但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
+3.dict对象可以使用len()来求长度。
+
+
+
+代码：
+d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 }
+
+sum = 0.0
+for k, v in d.items():
+    sum = sum + v
+    print k, ':', v
+print 'average', ':', sum / len(d)
+
+
+结果：
+Lisa : 85
+
+Paul : 74
+
+Adam : 95
+
+Bart : 59
+
+average : 78.25
+
+
+知识点：
+1.items() 方法把dict对象转换成了包含tuple的list，我们对这个list进行迭代，可以同时获得key和value。
+2.iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。
+
+
+
+代码：
+生成列表
+print [x * (x + 1) for x in range(1, 101, 2)]
+
+
+
+代码：
+d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 }
+def generate_tr(name, score):
+    if score < 60:
+        return '<tr><td>%s</td><td style = "color: red">%s</td></tr>' % (name, score)
+    else:
+        return '<tr><td>%s</td><td>%s</td></tr>' % (name, score)
+        
+
+tds = [generate_tr(name, score) for name, score in d.iteritems()]
+print '<table border="1">'
+print '<tr><th>Name</th><th>Score</th><tr>'
+print '\n'.join(tds)
+print '</table>'
+
+
+
+
+代码：
+def toUppers(L):
+    return [x.upper() for x in L if isinstance(x, str)]
+
+print toUppers(['Hello', 'world', 101])
+
+
+结果：
+['HELLO', 'WORLD']
+
+
+知识点：
+1. isinstance(x, str) 可以判断变量 x 是否是字符串；
+2. 字符串的 upper() 方法可以返回大写的字母。
+
+
+
+
+代码：
+多层表达式，利用 3 层for循环的列表生成式，找出对称的 3 位数。例如，121 就是对称数，因为从右到左倒过来还是 121。
+print [(i * 100 + j * 10 + k) for i in range(1, 10) for j in range(0, 10) for k in range(0, 10) if i == k]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
