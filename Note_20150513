@@ -1,0 +1,374 @@
+代码：
+把函数作为参数。
+import math
+
+def add(x, y, f):
+    return f(x) + f(y)
+
+print add(25, 9, math.sqrt)
+
+
+结果：
+8.0
+
+
+
+代码：map()函数
+def format_name(s):
+    return s[0].upper() + s[1:].lower() 
+        
+print map(format_name, ['adam', 'LISA', 'barT'])
+
+
+结果：
+['Adam', 'Lisa', 'Bart']
+
+
+知识点：
+map()是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，并通过把函数 f 依次作用在 list 的每个元素上，得到一个新的 list 并返回。
+
+
+
+代码：
+def prod(x, y):
+    return x * y
+
+print reduce(prod, [2, 4, 5, 7, 12])
+
+
+知识点：
+reduce()函数也是Python内置的一个高阶函数。reduce()函数接收的参数和 map()类似，一个函数 f，一个list，但行为和 map()不同，reduce()传入的函数 f 必
+
+须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。
+
+
+
+代码：
+import math
+
+def is_sqr(x):
+    return math.sqrt(x) % 1 == 0
+
+
+结果：
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+
+
+知识点：
+filter()函数是 Python 内置的另一个有用的高阶函数，filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 
+
+False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
+
+
+
+代码：
+自定义排序函数
+def cmp_ignore_case(s1, s2):
+    lower1 = s1.lower()
+    lower2 = s2.lower()
+    if lower1[0] < lower2[0]:
+        return -1
+    elif lower1[0] > lower2[0]:
+        return 1
+    return 0
+
+print sorted(['bob', 'about', 'Zoo', 'Credit'], cmp_ignore_case)
+
+
+结果：
+['about', 'bob', 'Credit', 'Zoo']
+
+
+
+知识点：
+sorted()函数可对list进行排序，sorted()也是一个高阶函数，它可以接收一个比较函数来实现自定义排序，比较函数的定义是，传入两个待比较的元素 x, y，如
+
+果 x 应该排在 y 的前面，返回 -1，如果 x 应该排在 y 的后面，返回 1。如果 x 和 y 相等，返回 0。
+
+
+
+
+代码：
+返回函数，请编写一个函数calc_prod(lst)，它接收一个list，返回一个函数，返回函数可以计算参数的乘积。
+def calc_prod(lst):
+    def late_prod():
+        def f(x, y):
+            return x * y
+        return reduce(f, lst)
+    return late_prod
+      
+
+f = calc_prod([1, 2, 3, 4])
+print f()
+
+
+知识点：
+Python的函数不仅可以返回int、str、list、dict等数据类型，还可以返回函数。
+def myabs():
+    return abs   # 返回函数
+def myabs2(x):
+    return abs(x)   # 返回函数调用的结果，返回值是一个数值
+
+
+
+
+
+代码：
+闭包
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f(j):
+            def f_num():
+                return j * j
+            return f_num
+        fs.append(f(i))
+    return fs
+
+f1, f2, f3 = count()
+print f1(), f2(), f3()
+
+
+结果：1 4 9
+
+
+
+知识点：
+内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为闭包。
+闭包的特点是返回的函数还引用了外层函数的局部变量，因此，要正确使用闭包，就要确保引用的局部变量在函数返回后不能变。
+# 希望一次返回3个函数，分别计算1x1,2x2,3x3:
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i
+        fs.append(f)
+    return fs
+
+f1, f2, f3 = count()
+
+
+结果：9 9 9
+
+
+
+
+代码：
+匿名函数
+def is_not_empty(s):
+    return s and len(s.strip()) > 0
+
+print filter(is_not_empty, ['test', None, '', 'str', '  ', 'END'])
+
+print filter(lambda s:  s and len(s.strip()) > 0, ['test', None, '', 'str', ' ', 'END'])
+
+结果：
+['test', 'str', 'END']
+
+['test', 'str', 'END']
+
+
+知识点：
+关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数。
+
+
+
+
+
+代码:
+编写无参数decorator
+import time
+
+def performance(f):
+    def fn(*args, **kw):
+        t1 = time.time()
+        r = f(*args, **kw)
+        t2 = time.time()
+        print 'call %s() in %fs' % (f.__name__, (t2 - t1))
+        return r
+    return fn
+
+@performance
+def factorial(n):
+    return reduce(lambda x,y: x*y, range(1, n+1))
+
+print factorial(10)
+
+
+疑问：time.time()返回的是什么格式的时间？
+
+
+
+
+代码：
+编写带参数的decorator
+import time
+
+def performance(unit):
+    def performance_inside(f):
+        def fn(*args, **km):
+            t1 = time.time()
+            r = f(*args, **km)
+            t2 = time.time()
+            print 'call %s() in %f %s'%(f.__name__, t2 - t1, unit)
+            return r
+        return fn
+    return performance_inside
+        
+
+@performance('ms')
+def factorial(n):
+    return reduce(lambda x,y: x*y, range(1, n+1))
+
+print factorial(10)
+
+
+结果：
+call factorial() in 0.000638 ms
+
+3628800
+
+
+
+
+
+代码：
+import time, functools
+
+def performance(unit):
+    def perf_decorator(f):
+        @functools.wraps(f)
+        def fn(*args, **kw):
+            t1 = time.time()
+            r = f(*args, **kw)
+            t2 = time.time()
+            t = (t2 - t1) * 1000 if unit == 'ms' else (t2 - t1)
+            print 'call %s() in %f %s'%(f.__name__, t, unit)
+            return r
+        return fn
+    return perf_decorator
+
+@performance('ms')
+def factorial(n):
+    return reduce(lambda x,y: x*y, range(1, n+1))
+
+print factorial.__name__
+
+
+结果：
+factorial
+
+
+知识点：
+def log(f):
+    def wrapper(*args, **kw):
+        print 'call...'
+        return f(*args, **kw)
+    return wrapper
+@log
+def f2(x):
+    pass
+print f2.__name__
+
+输出：
+wrapper
+由于decorator返回的新函数函数名已经不是'f2'，而是@log内部定义的'wrapper'。这对于那些依赖函数名的代码就会失效。decorator还改变了函数的__doc__等
+
+其它属性。如果要让调用者看不出一个函数经过了@decorator的“改造”，就需要把原函数的一些属性复制到新函数中。
+Python内置的functools可以用来自动化完成这个“复制”的任务。
+
+
+
+
+
+代码：
+偏函数
+import functools
+
+sorted_ignore_case = functools.partial(sorted, cmp = lambda s1, s2: cmp(s1.upper(), s2.upper()))
+
+print sorted_ignore_case(['bob', 'about', 'Zoo', 'Credit'])
+
+
+
+结果：
+['about', 'bob', 'Credit', 'Zoo']
+
+
+
+
+知识点：
+模块和包
+1、同名模块放入不同的包中
+p1.util	p2.util
+引用：import p1.util
+2、如何区分包和普通目录
+包下面有个__init__.py
+每层都必须要有
+
+
+
+
+代码：
+导入模块，Python的os.path模块提供了 isdir() 和 isfile()函数，请导入该模块，并调用函数判断指定的目录和文件是否存在。
+import os
+
+print os.path.isdir(r'/data/webroot/resource/python')
+print os.path.isfile(r'/data/webroot/resource/python/test.txt')
+
+结果：
+True
+
+True
+
+
+
+
+代码：
+在Python 3.x中，字符串统一为unicode，不需要加前缀 u，而以字节存储的str则必须加前缀 b。请利用__future__的unicode_literals在Python 2.7中编写
+
+unicode字符串。
+from __future__ import unicode_literals
+
+s = 'am I an unicode?'
+print isinstance(s, unicode)
+
+结果：
+True
+
+
+
+
+
+代码：
+定义类并创建实例
+class Person(object):
+    pass
+
+xiaoming = Person()
+xiaohong = Person()
+
+print xiaoming
+print xiaohong
+print xiaoming == xiaohong
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
