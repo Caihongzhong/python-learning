@@ -355,6 +355,484 @@ print xiaoming == xiaohong
 
 
 
+知识点：
+按照Python的编程习惯，类名以大写字母开头，紧接着是(object)，表示该类是从哪个类继承下来的。现在只需要简单地从object类继承。
+
+
+
+
+
+
+代码：
+请创建包含两个 Person 类的实例的 list，并给两个实例的 name 赋值，然后按照 name 进行排序。
+class Person(object):
+    pass
+
+p1 = Person()
+p1.name = 'Bart'
+
+p2 = Person()
+p2.name = 'Adam'
+
+p3 = Person()
+p3.name = 'Lisa'
+
+L1 = [p1, p2, p3]
+L2 = sorted(L1, lambda p1, p2: cmp(p1.name, p2.name)  )
+
+print L2[0].name
+print L2[1].name
+print L2[2].name
+
+
+
+结果：
+Adam
+
+Bart
+
+Lisa
+
+
+疑问：
+1. cmp(x, y)函数是否是Python的内置函数？
+2. Person类并没有定义属性，可以在创建Person的实例后定义属性吗？
+
+
+
+
+代码：
+请定义Person类的__init__方法，除了接受 name、gender 和 birth 外，还可接受任意关键字参数，并把他们都作为属性赋值给实例。
+**kw表示任意关键字参数，kw是一个dict，for循环为遍历kw的所有key-value対。
+class Person(object):
+    def __init__(self, name, gender, birth, **kw):
+        self.name = name
+        self.gender = gender
+        self.birth = birth
+        for k, w in kw.iteritems():
+            setattr(self, k, w)
+        
+
+xiaoming = Person('Xiao Ming', 'Male', '1990-1-1', job='Student')
+
+print xiaoming.name
+print xiaoming.job
+
+
+结果：
+Xiao Ming
+
+Student
+
+
+
+
+
+
+代码：
+请给 Person 类添加一个类属性 count，每创建一个实例，count 属性就加 1，这样就可以统计出一共创建了多少个 Person 的实例。
+class Person(object):
+    count = 0
+    def __init__(self, name):
+        self.name = name
+        Person.count = Person.count + 1
+    
+
+p1 = Person('Bob')
+print Person.count
+
+p2 = Person('Alice')
+print Person.count
+
+p3 = Person('Tim')
+print Person.count
+
+
+结果：
+1
+
+2
+
+3
+
+
+知识点：
+创建类属性：绑定在一个实例上的属性不会影响其他实例，但是，类本身也是一个对象，如果在类上绑定一个属性，则所有实例都可以访问类的属性，并且，所有
+
+实例访问的类属性都是同一个！也就是说，实例属性每个实例各自拥有，互相独立，而类属性有且只有一份。
+
+
+知识点：
+当实例属性和类属性重名时，实例属性优先极高，它将屏蔽对类属性的访问。
+
+私有属性：以__开头的属性，无法被外部访问。
+
+
+
+
+代码：
+定义实例方法，实例的方法就是在类中定义的函数，它的第一个函数永远是self，指向调用该方法的实例本身。
+# -*- coding: utf-8 -*-
+class Person(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.__score = score
+
+    def get_grade(self):
+        if self.__score >= 90:
+            return 'A-优秀'
+        elif self.__score >= 60:
+            return 'B-及格'
+        else:
+            return 'C-不及格'
+
+p1 = Person('Bob', 90)
+p2 = Person('Alice', 65)
+p3 = Person('Tim', 48)
+
+print p1.get_grade()
+print p2.get_grade()
+print p3.get_grade()
+
+
+结果：
+A-优秀
+
+B-及格
+
+C-不及格
+
+
+
+
+代码：
+class Person(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+        self.get_grade = lambda: 'A'
+
+p1 = Person('Bob', 90)
+print p1.get_grade
+print p1.get_grade()
+
+
+结果：
+ at 0x2b55972f67d0>
+
+A
+
+
+
+
+
+代码：
+定义类方法，和属性相似，方法也分实例方法和类方法。通过标记一个@classmethod，该方法将绑定到Person类上，而不是类的实例。
+class Person(object):
+
+    __count = 0
+
+    @classmethod
+    def how_many(cls):
+        return cls.__count
+    def __init__(self, name):
+        self.name = name
+        Person.__count = Person.__count + 1
+    
+        
+
+print Person.how_many()
+
+p1 = Person('Bob')
+
+print Person.how_many()
+
+结果：
+0
+
+1
+
+
+
+
+
+代码：
+编写一个 Teacher类，也继承自 Person。
+继承一个类，一定要用super（Person, self）.__init__(name, gender)去初始化父类。
+class Person(object):
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+
+class Teacher(Person):
+
+    def __init__(self, name, gender, course):
+        super(Teacher, self).__init__(name, gender)
+        self.course = course
+
+t = Teacher('Alice', 'Female', 'English')
+print t.name
+print t.course
+
+
+
+
+
+代码：
+isinstance()可以判断一个变量的类型，既可以用在Python内置的数据类型如str、list、dict，也可以用在我们自定义的类。
+class Person(object):
+
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+
+class Student(Person):
+
+    def __init__(self, name, gender, score):
+        super(Student, self).__init__(name, gender)
+        self.score = score
+
+class Teacher(Person):
+
+    def __init__(self, name, gender, course):
+        super(Teacher, self).__init__(name, gender)
+        self.course = course
+
+t = Teacher('Alice', 'Female', 'English')
+
+print isinstance(t, Person)
+print isinstance(t, Student)
+print isinstance(t, Teacher)
+print isinstance(t, object)
+
+
+a = 10
+print isinstance(a, int)
+
+b = 'hello, world'
+print isinstance(b, str)
+
+l = range(1, 11)
+print isinstance(l, list)
+
+
+结果：
+True
+
+False
+
+True
+
+True
+
+True
+
+True
+
+True
+
+
+
+
+代码：
+import json
+print json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}])
+
+print json.dumps("\"foo\bar")
+
+print json.dumps(u'\u1234')
+
+print json.dumps('\\')
+
+print json.loads('["foo", {"bar": ["baz", null, 1.0, 2]}]')
+
+
+class Students(object):
+    def read(self):
+        return r'["Tim", "Bob", "Alice"]'
+    
+
+s = Students()
+
+print json.load(s)
+
+
+结果：
+["foo", {"bar": ["baz", null, 1.0, 2]}]
+
+"\"foo\bar"
+
+"\u1234"
+
+"\\"
+
+[u'foo', {u'bar': [u'baz', None, 1.0, 2]}]
+
+[u'Tim', u'Bob', u'Alice']
+
+
+
+
+疑问：
+1. json模块的load和dump？
+2. 上一段代码？
+
+
+
+
+
+代码：
+多重继承：
++-Person
+  +- Student
+  +- Teacher
+是一类继承树；
++- SkillMixin
+   +- BasketballMixin
+   +- FootballMixin
+是一类继承树。
+通过多重继承，请定义“会打篮球的学生”和“会踢足球的老师”。
+class Person(object):
+    pass
+
+class Student(Person):
+    pass
+
+class Teacher(Person):
+    pass
+
+class SkillMixin(object):
+    pass
+
+class BasketballMixin(SkillMixin):
+    def skill(self):
+        return 'basketball'
+
+class FootballMixin(SkillMixin):
+    def skill(self):
+        return 'football'
+
+class BStudent(Student, BasketballMixin):
+    pass
+
+class FTeacher(Teacher, FootballMixin):
+    pass
+
+s = BStudent()
+print s.skill()
+
+t = FTeacher()
+print t.skill()
+
+
+结果：
+basketball
+
+football
+
+
+
+
+
+知识点：
+dir()返回的属性是字符串列表，如果已知一个属性名称，要获取或者设置对象的属性，就需要用 getattr() 和 setattr( )函数了：
+
+
+
+
+
+代码：
+__str__和__repr__，__str__方法用来以一种清晰美观的形式打印实例
+class Person(object):
+
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+
+class Student(Person):
+
+    def __init__(self, name, gender, score):
+        super(Student, self).__init__(name, gender)
+        self.score = score
+
+    def __str__(self):
+        return '(Student: %s, %s, %d)'%(self.name, self.gender, self.score)
+    __repr__ = __str__
+
+s = Student('Bob', 'male', 88)
+print s
+
+
+
+
+
+
+代码：
+class Student(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def __str__(self):
+        return '(%s: %s)' % (self.name, self.score)
+
+    __repr__ = __str__
+
+    def __cmp__(self, s):
+        if self.score < s.score:
+            return 1
+        elif self.score > s.score:
+            return -1
+        else:
+            if self.name < s.name:
+                return -1
+            elif self.name > s.name:
+                return 1
+
+L = [Student('Tim', 99), Student('Bob', 88), Student('Alice', 99)]
+print sorted(L)
+
+
+参考代码:
+class Student(object):
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def __str__(self):
+        return '(%s: %s)' % (self.name, self.score)
+
+    __repr__ = __str__
+
+    def __cmp__(self, s):
+        if self.score == s.score:
+            return cmp(self.name, s.name)
+        return -cmp(self.score, s.score)
+
+L = [Student('Tim', 99), Student('Bob', 88), Student('Alice', 99)]
+print sorted(L)
+
+
+
+结果：
+[(Alice: 99), (Tim: 99), (Bob: 88)]
+
+
+知识点：
+Python的sorted()是按照默认的比较函数cmp排序，如果是对自定义对象进行排序，就必须调用该类的特殊方法__cmp__()方法。
+
+
+
+
+
+
+
+
+
+
 
 
 
