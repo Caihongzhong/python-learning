@@ -1,0 +1,157 @@
+一.threading.Thread类
+1.Thread 是threading模块中最重要的类之一，可以使用它来创建线程。
+
+2.有两种方式来创建线程：一种是通过继承Thread类，重写它的run方法；
+另一种是创建一个threading.Thread对象，在它的初始化函数（__init__）中将可调用对象作为参数传入。
+
+3.run方法 和start方法: 它们都是从Thread继承而来的，run()方法将在线程开启后执行，start()方法用于启动线程。
+
+4.Thread.join([timeout]):调用Thread.join将会使主调线程堵塞，直到被调用线程运行结束或超时。???
+参数timeout是一个数值类型，表示超时时间，如果未提供该参数，那么主调线程将一直堵塞到被调线程结束。
+
+二.threading.RLock和threading.Lock
+1.这两种琐的主要区别是：RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。
+注意：如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。
+
+三.threading.Condition
+1.Condition也提供了acquire, release方法，其含义与琐的acquire, release方法一致.
+
+2.Condition.wait([timeout]),wait方法释放内部所占用的琐，同时线程被挂起，直至接收到通知被唤醒或超时。
+当线程被唤醒并重新占有琐的时候，程序才会继续执行下去。
+
+3.Condition.notify(),唤醒一个挂起的线程（如果存在挂起的线程）。注意：notify()方法不会释放所占用的琐。
+
+eg1:
+import threading
+import time
+
+class mythread(threading.Thread):
+	def __init__(self, lock, threadname):
+		super(mythread, self).__init__(name = threadname)
+		self.lock = lock
+
+	def run(self):
+		global x
+		self.lock.acquire()
+		for i in range(3):
+			x = x + 1
+		time.sleep(2)
+		print x
+		self.lock.release()
+
+lock = threading.Lock()
+t1 = []
+for i in range(10):
+	t = mythread(lock, str(i))
+	t1.append(t)
+
+x = 0
+for i in t1:
+	i.start()
+	
+eg2:
+import threading
+import time
+import random
+class Counter(threading.Thread):
+	def __init__(self, lock, threadName):
+		super(Counter, self).__init__(name = threadName)
+		self.lock = lock
+
+	def run(self):
+		global count
+		self.lock.acquire()
+		for i in xrange(10000):
+			count = count + 1
+		time.sleep(2)
+		print count
+		self.lock.release()
+
+count = 0
+c_threads = []
+lock = threading.Lock()
+for i in range(5):
+	c_thread = Counter(lock, "thread-" + str(i))
+	c_threads.append(c_thread)
+for c_thread in c_threads:
+	c_thread.start()
+	
+eg3:
+import threading
+import time
+import random
+count = 0
+lock = threading.Lock()
+def doAdd():
+	global count, lock
+	lock.acquire()
+	for i in xrange(10000):
+		count = count + 1
+	lock.release()
+for i in range(5):
+	threading.Thread(target = doAdd, args = (), name = "thread-" + str(i)).start()
+time.sleep(2)
+print count
+
+eg4:
+import threading
+import time
+def doWaiting():
+	print 'start waiting:', time.strftime('%H:%M:%S')
+	time.sleep(3)
+	print 'stop waiting', time.strftime('%H:%M:%S')
+
+thread1 = threading.Thread(target = doWaiting)
+thread1.start()
+time.sleep(1)
+print 'start join'
+thread1.join()
+print 'end join'
+
+eg5:
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import threading
+import time
+class Seeker(threading.Thread):
+	def __init__(self, cond, name):
+		super(Seeker, self).__init__()
+		self.cond = cond
+		self.name = name
+	def run(self):
+		#确保先运行Seeker中的方法
+		time.sleep(1) 
+		self.cond.acquire()
+		print self.name + ':我已经把眼睛蒙上了'
+		self.cond.notify()
+		self.cond.wait()
+
+		print self.name + ':我找到你了~_~'
+		self.cond.notify()
+		self.cond.release()
+
+		print self.name + ':我赢了'
+
+class Hider(threading.Thread):
+	def __init__(self, cond, name):
+		super(Hider, self).__init__()
+		self.cond = cond
+		self.name = name
+	def run(self):
+		self.cond.acquire()
+		self.cond.wait()
+
+		print self.name + ':我已经藏好了，你快来找我吧'
+		self.cond.notify()
+		self.cond.wait()
+
+		self.cond.release()
+		print self.name + ':被你找到了，哎~~~'
+
+cond = threading.Condition()
+seeker = Seeker(cond, 'seeker')
+hider = Hider(cond, 'hider')
+seeker.start()
+hider.start()
+
