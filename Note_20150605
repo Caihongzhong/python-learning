@@ -4,3 +4,21 @@
 
 2. 其函数不需要self参数，可以通过类调用该方法，不需要定义该类实例。
 
+二. enumerate,一般情况下对一个列表或数组既要遍历索引又要遍历元素，使用enumerate
+lst = range(10)
+for index, value in enumerate(lst):
+    print index, value
+
+output:
+0 0
+1 1
+2 2
+3 3
+4 4
+5 5
+6 6
+7 7
+8 8
+9 9
+
+
