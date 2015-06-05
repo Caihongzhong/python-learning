@@ -5,6 +5,7 @@
 2. 其函数不需要self参数，可以通过类调用该方法，不需要定义该类实例。
 
 二. enumerate,一般情况下对一个列表或数组既要遍历索引又要遍历元素，使用enumerate
+eg1:
 lst = range(10)
 for index, value in enumerate(lst):
     print index, value
@@ -21,4 +22,29 @@ output:
 8 8
 9 9
 
+eg2:
+data.txt
+001.1 002.2 003.3
+010.1 020.2 030.3 040.4
+100.1 200.2 300.3
 
+test.py
+sums = {}
+#print open('data.txt')
+
+for line in open('data.txt'):
+	print line
+	
+	cols = [float(col) for col in line.split()]
+	for pos, val in enumerate(cols):
+		sums[pos] = sums.get(pos, 0.0) + val
+	
+
+for key in sorted(sums):
+	print key, '=', sums[key]
+	
+output:
+0 = 111.3
+1 = 222.6
+2 = 333.9
+3 = 40.4
