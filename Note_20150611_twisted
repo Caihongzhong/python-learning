@@ -1,0 +1,221 @@
+一、概念
+1.Twisted python为事件驱动的网络引擎库，Twisted的核心为reactor事件全局循环，
+2.reactor.run()启动全局循环，reactor.stop()终止全局循环。
+3.Transports:transport为Protocol类中的一个实例属性，表示网络通信的两个终端之间的连接。transport有5个方法：
+write: 以非阻塞的方式把数据写入物理连接中
+
+writeSequence:
+
+loseConnection:断开连接
+
+getPeer:获取连接的远程地址
+
+getHost:获取连接的本机地址
+
+4.Protocols
+Protocols描述如何异步处理网络事件。方法如下：
+makeConnection:通信双方之间建立连接
+
+connectionMade:当与另一终端的连接建立时，调用该方法
+
+dataReceived:当通过transport收到数据时，调用该方法
+
+connectionLost:当连接关闭时，调用该方法
+
+5.Protocol Factories
+方法：buildProtocol为每一次连接新建一个protocol
+
+二、导入twisted模块
+In [1]: import twisted
+
+In [2]: twisted.__version__
+Out[2]: '15.2.1'
+
+三、A TCP echo server and client
+eg.echoserver.py
+from twisted.internet import protocol, reactor
+
+class Echo(protocol.Protocol):
+	def dataReceived(self, data):
+		self.transport.write(data)
+
+class EchoFactory(protocol.Factory):
+	def buildProtocol(self, addr):
+		return Echo()
+
+reactor.listenTCP(8000, EchoFactory())
+reactor.run()
+
+echoclient.py
+from twisted.internet import reactor, protocol
+
+class EchoClient(protocol.Protocol):
+	def connectionMade(self):
+		self.transport.write("Hello, world!")
+
+	def dataReceived(self, data):
+		print "Server said:", data
+		self.transport.loseConnection()
+
+class EchoFactory(protocol.ClientFactory):
+	def buildProtocol(self, addr):
+		return EchoClient()
+
+	def clientConnectionFailed(self, connector, reason):
+		print "Connection failed."
+		reactor.stop()
+
+	def clientConnectionLost(self, connector, reason):
+		print "Connection lost."
+		reactor.stop()
+
+reactor.connectTCP("localhost", 8000, EchoFactory())
+reactor.run()
+
+四、
+eg.quoteserver.py
+from twisted.internet.protocol import Factory
+from twisted.internet import reactor, protocol
+
+class QuoteProtocol(protocol.Protocol):
+	def __init__(self, factory):
+		self.factory = factory
+
+	def connectionMade(self):
+		self.factory.numConnections += 1
+
+	def dataReceived(self, data):
+		print "Number of active connections: %d" %\
+		(self.factory.numConnections,)
+		print "> Received: ''%s''\n> Sending: ''%s''" %\
+		(data, self.getQuote())
+		self.transport.write(self.getQuote())
+		self.updateQuote(data)
+
+	def connectionLost(self, reason):
+		self.factory.numConnections -= 1
+
+	def getQuote(self):
+		return self.factory.quote
+
+	def updateQuote(self, quote):
+		self.factory.quote = quote
+
+class QuoteFactory(Factory):
+	numConnections = 0
+
+	def __init__(self, quote=None):
+		self.quote = quote or "An apple a day keeps the doctor away"
+
+	def buildProtocol(self, addr):
+		return QuoteProtocol(self)
+
+reactor.listenTCP(8000, QuoteFactory())
+reactor.run()
+
+eg.quoclient.py
+from twisted.internet import reactor, protocol
+
+class QuoteProtocol(protocol.Protocol):
+	def __init__(self, factory):
+		self.factory = factory
+
+	def connectionMade(self):
+		self.sendQuote()
+
+	def sendQuote(self):
+		self.transport.write(self.factory.quote)
+
+	def dataReceived(self, data):
+		print "Received quote:", data
+		self.transport.loseConnection()
+
+class QuoteClientFactory(protocol.ClientFactory):
+	def __init__(self, quote):
+		self.quote = quote
+
+	def buildProtocol(self, addr):
+		return QuoteProtocol(self)
+
+	def clientConnectionFailed(self, connector, reason):
+		print 'connection failed:', reason.getErrorMessage()
+		maybeStopReactor()
+
+	def clientConnectionLost(self, connector, reason):
+		print 'connection lost:', reason.getErrorMessage()
+		maybeStopReactor()
+
+def maybeStopReactor():
+	global quote_counter
+	quote_counter -= 1
+	if not quote_counter:
+		reactor.stop()
+
+quotes = [\
+"You snooze you lose",\
+"The early bird gets the worm",\
+"Carpe diem"\
+]
+quote_counter = len(quotes)
+
+for quote in quotes:
+	reactor.connectTCP('localhost', 8000, QuoteClientFactory(quote))
+reactor.run()
+
+五、chat
+eg.chatserver.py
+from twisted.internet.protocol import Factory
+from twisted.protocols.basic import LineReceiver
+from twisted.internet import reactor
+
+class ChatProtocol(LineReceiver):
+	def __init__(self, factory):
+		self.factory = factory
+		self.name = None
+		self.state = "REGISTER"
+
+	def connectionMade(self):
+		self.sendLine("What's your name?")
+
+	def connectionLost(self, reason):
+		if self.name in self.factory.users:
+			del self.factory.users[self.name]
+			self.broadcastMessage("%s has left the channel." % (self.name,))
+
+	def lineReceived(self, line):
+		if self.state == "REGISTER":
+			self.handle_REGISTER(line)
+		else:
+			self.handle_CHAT(line)
+
+	def handle_REGISTER(self, name):
+		if name in self.factory.users:
+			self.sendLine("Name taken, please choose another.")
+			return
+		self.sendLine("Welcome, %s!" % (name,))
+		self.broadcastMessage("%s has joined the channel." % (name,))
+		self.name = name
+		self.factory.users[name] = self
+		self.state = "CHAT"
+
+	def handle_CHAT(self, message):
+		message = "<%s> %s" % (self.name, message)
+		self.broadcastMessage(message)
+
+	def broadcastMessage(self, message):
+		for name, protocol in self.factory.users.iteritems():
+			if protocol != self:
+				protocol.sendLine(message)
+
+class ChatFactory(Factory):
+	def __init__(self):
+		self.users = {}
+
+	def buildProtocol(self, addr):
+		return ChatProtocol(self)
+
+reactor.listenTCP(8000, ChatFactory())
+reactor.run()
+
+
+
