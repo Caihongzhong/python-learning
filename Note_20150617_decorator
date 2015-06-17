@@ -1,0 +1,34 @@
+一、@log的定义
+In [1]: def log(f):
+   ...:     def fn(x):
+   ...:         print 'call ' + f.__name__ + '()...'
+   ...:         return f(x)
+   ...:     return fn
+   ...:
+
+In [2]: @log
+   ...: def factorial(n):
+   ...:     return reduce(lambda x, y: x*y, range(1, n + 1))
+   ...:
+
+In [3]: print factorial(10)
+call factorial()...
+3628800
+
+二、@performance的定义
+import time
+
+def performance(f):
+    def fn(*args, **kw):
+        t1 = time.time()
+        r = f(*args, **kw)
+        t2 = time.time()
+        print 'call %s() in %fs' % (f.__name__, (t2 - t1))
+        return r
+    return fn
+
+@performance
+def factorial(n):
+    return reduce(lambda x,y: x*y, range(1, n+1))
+
+print factorial(10)
