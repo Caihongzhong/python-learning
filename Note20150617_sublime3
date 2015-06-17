@@ -1,0 +1,4 @@
+插件
+package control安装后，
+安装编译器：Anaconda，运行build with python，sublimeREPL会报错
+错误检查：sublimeLint： sublimeLint pep8
