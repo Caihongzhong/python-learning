@@ -1,0 +1,48 @@
+Windows环境下使用python的virtualenv
+1. pip安装virtualenv
+pip.exe install virtualenv
+
+2. 安装成功后， c:\python27\Scripts 目录将多了 virtualenv.exe 文件
+
+3. D:\python_env>virtualenv -p D:\python34\python.exe my_env34
+Running virtualenv with interpreter D:\python34\python.exe
+Using base prefix 'D:\\python34'
+New python executable in my_env34\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+
+4.D:\python_env>virtualenv -p C:\Python27\python.exe my_test1
+Already using interpreter C:\Python27\python.exe
+New python executable in my_test1\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+
+5.进入python2.7虚拟环境并用pip安装第三方模块twisted
+D:\python_env\my_test1\Scripts>activate.bat
+(my_test1) D:\python_env\my_test1\Scripts>
+
+(my_test1) D:\python_env\my_test1\Scripts>pip.exe install twisted
+D:\python_env\my_test1\lib\site-packages\pip\_vendor\requests\packages\urllib3\
+til\ssl_.py:90: InsecurePlatformWarning: A true SSLContext object is not availa
+le. This prevents urllib3 from configuring SSL appropriately and may cause cert
+in SSL connections to fail. For more information, see https://urllib3.readthedo
+s.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning
+Collecting twisted
+D:\python_env\my_test1\lib\site-packages\pip\_vendor\requests\packages\urllib3\
+til\ssl_.py:90: InsecurePlatformWarning: A true SSLContext object is not availa
+le. This prevents urllib3 from configuring SSL appropriately and may cause cert
+in SSL connections to fail. For more information, see https://urllib3.readthedo
+s.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning
+  Using cached Twisted-15.2.1-cp27-none-win_amd64.whl
+Collecting zope.interface>=3.6.0 (from twisted)
+Requirement already satisfied (use --upgrade to upgrade): setuptools in d:\pyth
+n_env\my_test1\lib\site-packages (from zope.interface>=3.6.0->twisted)
+Installing collected packages: zope.interface, twisted
+Successfully installed twisted-15.2.1 zope.interface-4.1.2
+
+5.退出python2.7虚拟环境
+(my_test1) D:\python_env\my_test1\Scripts>deactivate.bat
+D:\python_env\my_test1\Scripts>
+
+
+
