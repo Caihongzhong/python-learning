@@ -1,0 +1,43 @@
+一. 官网www.python.org下载python2.7或者python3.4
+1、双击安装程序python-2.7.6.amd64
+2、选择Install for all users，点击下一步
+3、选择安装目录，Python默认的安装目录是：“C:\Python27”，可以直接使用默认目录安装，也可以安装到不同的目录。这里选择默认安装目录，直接点击Next继续下面的安装。当然读者可以根据需要安装到其他目录
+4、接下来，选择的是需要安装的Python组件，使用系统默认选项全部安装，点击Next进入下一步。
+5、等待结束后，安装程序会提示Python安装完成，点击Finish来即可退出。
+6、设置Windows的环境变量Path，具体作如下设置：右击“我的电脑”->选择“属性”->选择“高级”->点击“环境 变量”，弹出环境变量对话框->在系统变量中，双击“Path”条目，弹出对话框->在变量值中加入python的安装路径，例如：路径为 E:\python27;
+
+二. 安装包管理器pip
+https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
+从该地址获取get-pip.py保存至D:\\python27目录下，在该目录下运行， python get-pip.py安装完成pip.
+
+三. 安装第三方组件
+1. 安装zmq
+pip.exe install pyzmq
+安装完成后，显示成功安装
+Installing collected packages: pyzmq
+Successfully installed pyzmq-14.7.0
+
+2. 安装redis
+pip.exe install redis
+安装完成后，显示成功安装
+Installing collected packages: redis
+Successfully installed redis-2.10.3
+
+3. 安装protobuf
+pip.exe install protobuf
+安装完成后，显示成功安装
+Successfully built protobuf
+Installing collected packages: protobuf
+Successfully installed protobuf-2.6.1
+
+4. 安装twisted
+pip.exe install twisted
+
+5. 安装Numpy
+pip.exe install numpy
+
+6. 安装虚拟环境virtualenv
+pip.exe install virtualenv
+
+
+
