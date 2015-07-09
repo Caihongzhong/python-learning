@@ -1,0 +1,7 @@
+用datetime模块打印时间戳
+In [8]: from datetime import datetime
+
+In [9]: dt = datetime.now()
+
+In [10]: dt.strftime('%Y-%m-%d %H:%M:%S %f')
+Out[10]: '2015-07-09 14:08:30 482000'
