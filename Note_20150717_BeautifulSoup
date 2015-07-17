@@ -1,3 +1,5 @@
+Beautiful Soup transforms a complex HTML document into a complex tree of Python objects.
+four kinds of objects: Tag, NavigableString, BeautifulSoup, and Comment.
 eg1:
 In [12]: from bs4 import BeautifulSoup
 
@@ -102,3 +104,144 @@ Lacie and
 Tillie;
 and they lived at the bottom of a well.
 ...
+
+eg2: Tag
+In [27]: soup = BeautifulSoup('<b class="boldest">Extremely bold</b>')
+
+In [28]: tag = soup.b
+
+In [29]: type(tag)
+Out[29]: bs4.element.Tag
+
+In [30]: tag.name
+Out[30]: 'b'
+
+In [31]: tag.name = "blockquote"
+
+In [32]: tag
+Out[32]: <blockquote class="boldest">Extremely bold</blockquote>
+
+In [33]:  soup = BeautifulSoup('<b class="boldest">Extremely bold</b>')
+
+In [34]: tag = soup.b
+
+In [35]: tag['class']
+Out[35]: ['boldest']
+
+In [36]: tag.attrs
+Out[36]: {'class': ['boldest']}
+
+In [37]: tag['class'] = 'verybold'
+
+In [38]: tag['id'] = 1
+
+In [39]: tag
+Out[39]: <b class="verybold" id="1">Extremely bold</b>
+
+In [40]: del tag['class']
+
+In [41]: del tag['id']
+
+In [42]: tag
+Out[42]: <b>Extremely bold</b>
+
+In [43]: tag['class']
+
+eg3: NavigableString
+
+In [50]: tag.string
+Out[50]: u'Extremely bold'
+
+In [51]: type(tag.string)
+Out[51]: bs4.element.NavigableString
+
+In [52]: unicode_string = unicode(tag.string)
+
+In [53]: unicode_string
+Out[53]: u'Extremely bold'
+
+In [54]: type(unicode_string)
+Out[54]: unicode
+
+In [55]: tag.string.replace_with("No longer bold")
+Out[55]: u'Extremely bold'
+
+In [56]: tag
+Out[56]: <b>No longer bold</b>
+
+eg3: BeautifulSoup
+
+In [57]: soup.name
+Out[57]: u'[document]'
+
+eg4: Comment
+In [58]: markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
+
+In [59]: soup = BeautifulSoup(markup)
+
+In [60]: comment = soup.b.string
+
+In [61]: type(co)
+Contacts/ coerce    comment   complex   continue  copyright
+Cookies/  %colors   compile   %config   %copy
+
+In [61]: type(comment)
+Out[61]: bs4.element.Comment
+
+eg5: Navigating the tree
+In [74]: html_doc = """
+   ....: <html><head><title>The Dormouse's story</title></head>
+   ....:
+   ....: <p class="title"><b>The Dormouse's story</b></p>
+   ....:
+   ....: <p class="story">Once upon a time there were three little sisters; and
+their names were
+   ....: <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+
+   ....: <a href="http://example.com/lacie" class="sister" id="link2">Lacie</a>
+and
+   ....: <a href="http://example.com/tillie" class="sister" id="link3">Tillie</a
+>;
+   ....: and they lived at the bottom of a well.</p>
+   ....:
+   ....: <p class="story">...</p>
+   ....: """
+
+In [75]: from bs4 import BeautifulSoup
+
+In [76]: soup = BeautifulSoup(html_doc)
+
+In [77]: soup.head
+Out[77]: <head><title>The Dormouse's story</title></head>
+
+In [78]: soup.title
+Out[78]: <title>The Dormouse's story</title>
+
+In [79]: soup.body.b
+Out[79]: <b>The Dormouse's story</b>
+
+In [80]: soup.a
+Out[80]: <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
+
+In [81]: soup.find_all('a')
+Out[81]:
+[<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
+ <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
+ <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
