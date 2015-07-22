@@ -1,4 +1,4 @@
-一、RTS3交易测试脚本，收到成交回报推送时，报错，有时报错，有时包解析正常，错误如下：
+一、RTS3交易测试脚本，收到成交回报推送时，ParseFromString解析报错，有时报错，有时包解析正常，错误如下：
 Unhandled exception in thread started by <function ReceiveMsg at 0x0000000002674
 3C8>
 Traceback (most recent call last):
