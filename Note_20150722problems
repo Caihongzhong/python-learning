@@ -1,0 +1,50 @@
+一、RTS3交易测试脚本，收到成交回报推送时，报错，有时报错，有时包解析正常，错误如下：
+Unhandled exception in thread started by <function ReceiveMsg at 0x0000000002674
+3C8>
+Traceback (most recent call last):
+  File "test_stock_order(buy).py", line 78, in ReceiveMsg
+    elif func_id==0x0007:
+  File "build\bdist.win-amd64\egg\google\protobuf\message.py", line 179, in Pars
+eFromString
+  File "build\bdist.win-amd64\egg\google\protobuf\internal\python_message.py", l
+ine 755, in MergeFromString
+  File "build\bdist.win-amd64\egg\google\protobuf\internal\python_message.py", l
+ine 782, in InternalParse
+  File "build\bdist.win-amd64\egg\google\protobuf\internal\decoder.py", line 410
+, in DecodeField
+UnicodeDecodeError: 'utf8' codec can't decode byte 0x86 in position 8: invalid s
+tart byte
+
+二、Beautiful Soup解析网页时，某些数据由js生成，如链接：
+http://www.sse.com.cn/disclosure/diclosure/etf/index.shtml?type=1&etfClass=1
+下列表格中td标签内无值，如何获取td标签内的值？
+<table class="tablestyle">
+    <tr>
+        <td class="th_l2" width="50%">最小申购、赎回单位的预估现金部分(单位:元)</td>
+        <td id="estimatedCashComponent" width="50%"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >现金替代比例上限</td>
+        <td id="maxCashRatio"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >申购上限</td>
+        <td id="creationLimit"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >赎回上限</td>
+        <td id="redemptionLimit"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >是否需要公布IOPV</td>
+        <td id="publishIopv"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >最小申购、赎回单位(单位:份)</td>
+        <td id="creationRedemptionUnit"></td>
+    </tr>
+    <tr>
+        <td class="th_l2" >申购赎回的允许情况</td>
+        <td id="creationRedemption"></td>
+    </tr>
+</table>
