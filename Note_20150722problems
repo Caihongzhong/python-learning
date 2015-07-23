@@ -48,3 +48,50 @@ http://www.sse.com.cn/disclosure/diclosure/etf/index.shtml?type=1&etfClass=1
         <td id="creationRedemption"></td>
     </tr>
 </table>
+
+三、使用spynner模块下载网页时，报错：
+In [6]: import spynner
+
+In [7]: browser = spynner.Browser()
+
+In [8]: browser.load("http://www.wordreference.com")
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+C:\Python27\lib\site-packages\spynner\browser.pyc in createRequest(manager, oper
+ation, request, data)
+   1672         )
+   1673         manager.cookieJar().setAllCookies(cookies)
+-> 1674         url = six.u(toString(request.url()))
+   1675         operation_name = self._operation_names.get(
+   1676             operation, str(operation)).upper()
+
+C:\Python27\lib\site-packages\six-1.9.0-py2.7.egg\six.pyc in u(s)
+    619     # Workaround for standalone backslash
+    620     def u(s):
+--> 621         return unicode(s.replace(r'\\', r'\\\\'), "unicode_escape")
+    622     unichr = unichr
+    623     int2byte = chr
+
+TypeError: decoding Unicode is not supported
+
+解决方法：
+C:\Python27\lib\site-packages\six-1.9.0-py2.7.egg\six.py 目录下该.py文件中，原函数：
+def u(s):
+    return unicode(s.replace(r'\\', r'\\\\'), "unicode_escape")
+    
+改为：
+def u(s):
+    try:
+        return unicode(s.replace(r'\\', r'\\\\'), "unicode_escape")
+    except TypeError as e:
+        if "decoding Unicode is not supported" in str(e):
+            return unicode(s.replace(r'\\', r'\\\\'))
+            
+再运行代码：
+In [1]: import spynner
+
+In [2]: browser = spynner.Browser()
+
+In [3]: browser.load("http://www.wordreference.com")
+Out[3]: True
+
