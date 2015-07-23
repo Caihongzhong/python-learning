@@ -95,3 +95,34 @@ In [2]: browser = spynner.Browser()
 In [3]: browser.load("http://www.wordreference.com")
 Out[3]: True
 
+
+四、运行下列代码报错
+import spynner
+import pyquery
+import time
+from bs4 import BeautifulSoup
+
+browser = spynner.Browser()
+browser.create_webview()
+browser.set_html_parser(pyquery.PyQuery)
+browser.load("http://www.sse.com.cn/disclosure/diclosure/etf/index.shtml?type=1&etfClass=1", 5)
+
+try:
+	browser.wait_load(5)
+except:
+	pass
+
+string = browser.html 
+browser.close() 
+soup = BeautifulSoup(string)
+time.sleep(1)
+
+trading_day = soup.find(id="tradingDay")
+print trading_day
+
+结果：
+TypeError: _on_webview_destroyed() takes exactly 2 arguments (1 given)
+<td class="content_warning " id="tradingDay" width="50%">2015-07-23</td>
+[Finished in 5.2s]
+
+
