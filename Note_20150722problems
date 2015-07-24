@@ -49,6 +49,9 @@ http://www.sse.com.cn/disclosure/diclosure/etf/index.shtml?type=1&etfClass=1
     </tr>
 </table>
 
+解决方法：
+安装PyQt4和spynner，获取动态网页，再用BeautifulSoup解析，见链接http://www.comingcode.com/?p=275
+
 三、使用spynner模块下载网页时，报错：
 In [6]: import spynner
 
@@ -124,5 +127,9 @@ print trading_day
 TypeError: _on_webview_destroyed() takes exactly 2 arguments (1 given)
 <td class="content_warning " id="tradingDay" width="50%">2015-07-23</td>
 [Finished in 5.2s]
+
+解决方法：
+windows64bit机器上，把原先的PyQt4-4.11.4-cp27-none-win_amd64卸载，重新安装PyQt4-4.10.1-gpl-Py2.7-Qt4.8.4-x64.exe
+spynner卸载，重新安装spynner-2.5，运行脚本，不报错
 
 
