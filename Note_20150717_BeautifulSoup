@@ -469,6 +469,25 @@ In [59]: xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
 In [60]: xml_soup.p['class']
 Out[60]: u'body strikeout'
 
+In [61]: tag.string
+Out[61]: u'Extremely bold'
+
+In [62]: type(tag.string)
+Out[62]: bs4.element.NavigableString
+
+In [63]: unicode_string = unicode(tag.string)
+
+In [64]: unicode_string
+Out[64]: u'Extremely bold'
+
+In [65]: type(unicode_string)
+Out[65]: unicode
+
+In [66]: tag.string.replace_with("No longer bold")
+Out[66]: u'Extremely bold'
+
+In [67]: tag
+Out[67]: <blockquote>No longer bold</blockquote>
 
 
 
