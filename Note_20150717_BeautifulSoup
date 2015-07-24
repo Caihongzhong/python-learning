@@ -380,7 +380,94 @@ Tillie;
 and they lived at the bottom of a well.
 ...
 
+In [31]: soup = BeautifulSoup('<b class="boldest">Extremely bold</b>')
 
+In [32]: tag = soup.b
+
+In [33]: type(tag)
+Out[33]: bs4.element.Tag
+
+In [34]: tag.name
+Out[34]: 'b'
+
+In [35]: type(tag.name)
+Out[35]: str
+
+In [36]: tag.name = "blockquote"
+
+In [37]: tag
+Out[37]: <blockquote class="boldest">Extremely bold</blockquote>
+
+In [38]: tag['class']
+Out[38]: ['boldest']
+
+In [39]: tag.attrs
+Out[39]: {'class': ['boldest']}
+
+In [40]: tag['class'] = 'verybold'
+
+In [41]: tag['id'] = 1
+
+In [42]: tag
+Out[42]: <blockquote class="verybold" id="1">Extremely bold</blockquote>
+
+In [43]: del tag['class']
+
+In [44]: del tag['id']
+
+In [45]: tag
+Out[45]: <blockquote>Extremely bold</blockquote>
+
+In [46]: tag['class']
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-46-2ad7b0bfdb7d> in <module>()
+----> 1 tag['class']
+
+C:\Python27\lib\site-packages\beautifulsoup4-4.3.2-py2.7.egg\bs4\element.pyc in
+__getitem__(self, key)
+    903         """tag[key] returns the value of the 'key' attribute for the tag
+,
+    904         and throws an exception if it's not there."""
+--> 905         return self.attrs[key]
+    906
+    907     def __iter__(self):
+
+KeyError: 'class'
+
+In [47]: print tag.get('class')
+None
+
+In [48]: css_soup = BeautifulSoup('<p class="body strikeout"></p>')
+
+In [49]: css_soup.p['class']
+Out[49]: ['body', 'strikeout']
+
+In [50]: css_soup = BeautifulSoup('<p class="body"></p>')
+
+In [51]: css_soup.p['class']
+Out[51]: ['body']
+
+In [52]: id_soup = BeautifulSoup('<p id="my id"></p>')
+
+In [53]: id_soup.p['id']
+Out[53]: 'my id'
+
+In [54]: rel_soup = BeautifulSoup('<p>Back to the <a rel="index">homepage</a></p
+>')
+
+In [56]: rel_soup.a['rel']
+Out[56]: ['index']
+
+In [57]: rel_soup.a['rel'] = ['index', 'contents']
+
+In [58]: print rel_soup.p
+<p>Back to the <a rel="index contents">homepage</a></p>
+
+In [59]: xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
+
+In [60]: xml_soup.p['class']
+Out[60]: u'body strikeout'
 
 
 
