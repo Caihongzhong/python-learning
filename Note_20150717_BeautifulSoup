@@ -508,6 +508,30 @@ In [74]: print soup.b.prettify()
  <!--Hey, buddy. Want to buy a used parser?-->
 </b>
 
+In [84]: head_tag = soup.head
+
+In [85]: head_tag
+Out[85]: <head><title>The Dormouse's story</title></head>
+
+In [86]: head_tag.contents
+Out[86]: [<title>The Dormouse's story</title>]
+
+In [87]: title_tag = head_tag.contents[0]
+
+In [88]: title_tag
+Out[88]: <title>The Dormouse's story</title>
+
+In [89]: title_tag.contents
+Out[89]: [u"The Dormouse's story"]
+
+
+
+
+
+
+
+
+
 
 
 
