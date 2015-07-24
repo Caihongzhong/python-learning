@@ -488,6 +488,25 @@ Out[66]: u'Extremely bold'
 
 In [67]: tag
 Out[67]: <blockquote>No longer bold</blockquote>
+In [68]: soup.name
+Out[68]: u'[document]'
+
+In [69]: markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
+
+In [70]: soup = BeautifulSoup(markup)
+
+In [71]: comment = soup.b.string
+
+In [72]: type(comment)
+Out[72]: bs4.element.Comment
+
+In [73]: comment
+Out[73]: u'Hey, buddy. Want to buy a used parser?'
+
+In [74]: print soup.b.prettify()
+<b>
+ <!--Hey, buddy. Want to buy a used parser?-->
+</b>
 
 
 
