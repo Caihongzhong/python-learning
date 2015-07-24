@@ -231,6 +231,155 @@ Out[81]:
 
 
 
+2015-07-24
+In [3]: html_doc = """
+   ...: <html><head><title>The Dormouse's story</title></head>
+   ...:
+   ...: <p class="title"><b>The Dormouse's story</b></p>
+   ...:
+   ...: <p class="story">Once upon a time there were three little sisters; and t
+heir names were
+   ...: <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+   ...: <a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> a
+nd
+   ...: <a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>
+;
+   ...: and they lived at the bottom of a well.</p>
+   ...:
+   ...: <p class="story">...</p>
+   ...: """
+
+In [4]: from bs4 import BeautifulSoup
+
+In [5]: soup = BeautifulSoup(html_doc)
+
+In [6]: print(soup.prettify())
+<html>
+ <head>
+  <title>
+   The Dormouse's story
+  </title>
+ </head>
+ <body>
+  <p class="title">
+   <b>
+    The Dormouse's story
+   </b>
+  </p>
+  <p class="story">
+   Once upon a time there were three little sisters; and their names were
+   <a class="sister" href="http://example.com/elsie" id="link1">
+    Elsie
+   </a>
+   ,
+   <a class="sister" href="http://example.com/lacie" id="link2">
+    Lacie
+   </a>
+   and
+   <a class="sister" href="http://example.com/tillie" id="link3">
+    Tillie
+   </a>
+   ;
+and they lived at the bottom of a well.
+  </p>
+  <p class="story">
+   ...
+  </p>
+ </body>
+</html>
+
+In [7]: soup.title
+Out[7]: <title>The Dormouse's story</title>
+
+In [8]: soup.title.name
+Out[8]: 'title'
+
+In [10]: type(soup.title)
+Out[10]: bs4.element.Tag
+
+In [11]: type(soup.title.name)
+Out[11]: str
+
+In [12]: soup.title.string
+Out[12]: u"The Dormouse's story"
+
+In [13]: type(soup.title.string)
+Out[13]: bs4.element.NavigableString
+
+In [14]: type(soup)
+Out[14]: bs4.BeautifulSoup
+
+In [15]: soup.title.parent
+Out[15]: <head><title>The Dormouse's story</title></head>
+
+In [16]: type(soup.title.parent)
+Out[16]: bs4.element.Tag
+
+In [17]: soup.title.parent.name
+Out[17]: 'head'
+
+In [18]: soup.p
+Out[18]: <p class="title"><b>The Dormouse's story</b></p>
+
+In [19]: type(soup.p)
+Out[19]: bs4.element.Tag
+
+In [20]: soup.p['class']
+Out[20]: ['title']
+
+In [21]: soup.a
+Out[21]: <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
+
+In [22]: soup.a['href']
+Out[22]: 'http://example.com/elsie'
+
+In [23]: soup.a['class']
+Out[23]: ['sister']
+
+In [24]: soup.find_all('a')
+Out[24]:
+[<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
+ <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
+ <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
+ 
+In [25]: type(soup.find_all('a'))
+Out[25]: bs4.element.ResultSet
+
+In [26]: soup.find(id="link3")
+Out[26]: <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a
+>
+
+In [27]: type(soup.find(id="link3"))
+Out[27]: bs4.element.Tag
+
+In [28]: for link in soup.find_all('a'):
+   ....:     print(link.get('href'))
+   ....:
+http://example.com/elsie
+http://example.com/lacie
+http://example.com/tillie
+
+In [29]: for link in soup.find_all('a'):
+   ....:     print type(link)
+   ....:     print link.get('href')
+   ....:
+<class 'bs4.element.Tag'>
+http://example.com/elsie
+<class 'bs4.element.Tag'>
+http://example.com/lacie
+<class 'bs4.element.Tag'>
+http://example.com/tillie
+
+In [30]: print soup.get_text()
+The Dormouse's story
+The Dormouse's story
+Once upon a time there were three little sisters; and their names were
+Elsie,
+Lacie and
+Tillie;
+and they lived at the bottom of a well.
+...
+
 
 
 
