@@ -1,0 +1,15 @@
+eg1:
+import matplotlib.pyplot as plt 
+plt.plot([2, 3, 4, 5])
+plt.ylabel('some numbers')
+plt.show()
+
+当给plot()指定一个参数时， 默认该list为y的值，并自动生成x的值，x默认以0开始，并且长度和y的长度一致，即[0, 1, 2, 3]
+
+eg2:
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+plt.axis([0, 6, 0, 20])
+plt.show()
+
+axis() command in the example above takes a list of [xmin, xmax, ymin, ymax] and specifies the viewport of the axes
