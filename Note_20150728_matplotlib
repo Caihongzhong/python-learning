@@ -5,6 +5,7 @@ plt.ylabel('some numbers')
 plt.show()
 
 当给plot()指定一个参数时， 默认该list为y的值，并自动生成x的值，x默认以0开始，并且长度和y的长度一致，即[0, 1, 2, 3]
+plt.ylabel():y轴标签
 
 eg2:
 import matplotlib.pyplot as plt
@@ -13,3 +14,140 @@ plt.axis([0, 6, 0, 20])
 plt.show()
 
 axis() command in the example above takes a list of [xmin, xmax, ymin, ymax] and specifies the viewport of the axes
+( axis()命令指定坐标范围[xmin, xmax, ymin, ymax], axis: 坐标轴)
+
+eg3:
+import numpy as np
+import matplotlib.pyplot as plt 
+
+t = np.arange(0., 5., 0.2)
+
+#red dashes, blue squares and green triangles
+plt.plot(t, t, 'r--', t, t + 2, 'bs', t, t + 3, 'g^')
+plt.show()
+
+np.arange() 类似于python的内置方法range(),但是返回类型为numpy.ndarray
+In [1]: import numpy as np
+
+In [2]: a = np.arange(5)
+
+In [3]: type(a)
+Out[3]: numpy.ndarray
+
+eg4:
+import numpy as np
+import matplotlib.pyplot as plt 
+
+x = np.arange(0., 5.)
+y = x ** 3
+plt.plot(x, y, linewidth=4.0)
+plt.show()
+
+# line, = plt.plot(x, y, '-')
+# line.set_antialiased(False) 
+# line1, = plt.plot(x, y, 'o')
+# print line1
+# plt.show()
+
+linewidth指定曲线的宽度，通过调用Line2D对象line的set_antialiased方法，关闭对象的反锯齿效果。
+
+eg5:
+import numpy as np
+import matplotlib.pyplot as plt 
+
+x1 = np.arange(5.0)
+x2 = x1 
+y1 = x1 * 2
+y2 = x2 * 3 
+
+# line1, line2 = plt.plot(x1, y1, x2, y2)
+# plt.show()
+
+# lines = plt.plot(x1, y1, x2, y2)
+# plt.setp(lines, color='r', linewidth=2.0)
+# plt.setp(lines, 'color', 'r', 'linewidth', 2.0)
+# plt.show()
+
+line1, line2 = plt.plot(x1, y1, x2, y2)
+plt.setp(line1, color='r', linewidth=2.0)
+plt.setp(line2, color='b', linewidth=2.0)
+plt.show()
+
+
+eg6:
+import numpy as np
+import matplotlib.pyplot as plt 
+
+def f(t):
+	return np.exp(-t) * np.cos(2*np.pi*t)
+
+t1 = np.arange(0.0, 5.0, 0.1)
+t2 = np.arange(0.0, 5.0, 0.02)
+
+plt.figure(1)
+plt.subplot(211)
+plt.plot(t1, f(t1), 'bo', t2, f(t2), 'k')
+
+plt.subplot(212)
+plt.plot(t2, np.cos(2*np.pi*t2), 'r--')
+plt.show()
+
+figure()命令在这里是可选的，默认情况下会创建figure(1)；若不指定坐标轴，默认创建subplot(111)，subplot()方法指定了numrows,
+numcols, fignum. 
+
+eg7:
+import matplotlib.pyplot as plt  
+
+plt.figure(1) 			# the first figure
+plt.subplot(211)		# the first subplot in the first figure
+plt.plot([1, 2, 3])		
+plt.subplot(212)		# the second subplot in the first figure
+plt.plot([4, 5, 6])
+
+plt.figure(2)			# a second figure
+plt.plot([4, 5, 6])		# creates a subplot(111) by default
+
+plt.figure(1)			# figure 1 current; subplot(222) still current
+plt.subplot(211)		# make subplot(211) in figure1 current
+plt.title('Easy as 1,2,3') # subplot 211 title
+
+plt.show()
+
+
+eg8:
+import numpy as np
+import matplotlib.pyplot as plt  
+
+mu, sigma = 100, 15
+x = mu + sigma * np.random.randn(10000)
+
+# the histogram of the data
+n, bins, patches = plt.hist(x, 50, normed=1, facecolor='g', alpha=0.75)
+
+plt.xlabel('Smarts')
+plt.ylabel('Probability')
+plt.title('Histogram of IQ')
+plt.text(60, .025, r'$\mu=100, \ \sigma=15$')
+plt.axis([40, 160, 0, 0.03])
+plt.grid(True)
+plt.show()
+
+xlabel(), ylabel() and title()分别指定x轴的标签、y轴的标签和标题文本，grid()指定格子可见
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
