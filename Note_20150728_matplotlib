@@ -132,7 +132,19 @@ plt.axis([40, 160, 0, 0.03])
 plt.grid(True)
 plt.show()
 
-xlabel(), ylabel() and title()分别指定x轴的标签、y轴的标签和标题文本，grid()指定格子可见
+xlabel(), ylabel() and title()分别指定x轴的标签、y轴的标签和标题文本，grid()指定格子可见, legend()指定说明文本的位置
+String 	            Code
+best		    0
+upper right	    1
+upper left	    2
+lower left	    3
+lower right	    4
+right		    5
+center left	    6
+center right	    7
+lower center	    8
+upper center	    9
+center		    10
 
 
 
