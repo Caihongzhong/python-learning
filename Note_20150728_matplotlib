@@ -180,6 +180,8 @@ w				white
 y				yellow
 
 
+plt.plot(x1, y1, fmt1, x2, y2, fmt2, ...)
+
 
 
 
