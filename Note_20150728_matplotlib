@@ -182,6 +182,38 @@ y				yellow
 
 plt.plot(x1, y1, fmt1, x2, y2, fmt2, ...)
 
+Line Styles
+Style abbreviation	Style
+-			solid line				
+--			dashed line
+-.			dash-dot line
+:			dotted line
+
+Control marker styles
+Marker abbreviation	Marker style
+.			Point marker
+,			Pixel marker
+o			Circle marker
+v			Triangle down
+marker
+^			Triangle up marker
+<			Triangle left marker
+>			Triangle right marker
+1			Tripod down marker
+2			Tripod up marker
+3			Tripod left marker
+4			Tripod right marker
+s			Square marker
+p			Pentagon marker
+*			Star marker
+h			Hexagon marker
+H			Rotated hexagon marker
++			Plus marker
+x			Cross (x) marker
+D			Diamond marker
+d			Thin diamond marker
+|			Vertical line (vline symbol) marker
+_			Horizontal line (hline symbol) marker
 
 
 
