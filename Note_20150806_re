@@ -1,0 +1,26 @@
+一、re.match(pattern, string, flags=0)和re.search(pattern, string, flags=0)的区别：
+1、re.search(pattern, string, flags=0)
+Scan through string looking for the first location where the regular expression pattern produces a match, 
+and return a corresponding MatchObject instance. Return None if no position in the string matches the pattern.
+
+2、re.match(pattern, string, flags=0)
+If zero or more characters at the beginning of string match the regular expression pattern, 
+return a corresponding MatchObject instance. Return None if the string does not match the pattern; 
+note that this is different from a zero-length match.
+
+In [1]: import re
+
+In [2]: print re.match('qts', 'D:\\zhongch script\\performance data analysis\\pe
+rformance\\performance\\qts\\quota_2015_7_24\\iopv.txt')
+None
+
+In [3]: print re.match('D:', 'D:\\zhongch script\\performance data analysis\\per
+<_sre.SRE_Match object at 0x00000000033DF578>iopv.txt')
+
+In [4]: print re.search('qts', 'D:\\zhongch script\\performance data analysis\\p
+<_sre.SRE_Match object at 0x00000000033DF578>\\iopv.txt')
+
+In [5]: print re.search('D:', 'D:\\zhongch script\\performance data analysis\\pe
+<_sre.SRE_Match object at 0x00000000033DF578>\iopv.txt')
+
+In [6]:
