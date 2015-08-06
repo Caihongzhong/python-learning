@@ -1,0 +1,9 @@
+import os
+1.输出dir目录下所有文件的绝对路径
+		for parent, dirnames, filenames in os.walk(dir):
+			for filename in filenames:
+				print os.path.join(parent, filename)
+				
+2. 列表推导式
+all_files = [os.path.join(parent, filename) for parent, dirnames, filenames in os.walk(dir) for filename in filenames]
+print all_files
