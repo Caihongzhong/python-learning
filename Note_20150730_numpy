@@ -1,3 +1,4 @@
+一、np.arange的用法
 In [1]: import numpy as np
 
 In [2]: x = np.arange(10)
@@ -71,6 +72,7 @@ In [5]: for yi in y:
 4.8
 4.9
 
+二、np.array的用法
 In [6]: import numpy as np
 
 In [7]: x = np.array([1, 2, 3])
@@ -103,3 +105,41 @@ In [17]: m = np.array([[1, 2, 3], [4, 5, 6]])
 
 In [18]: m[1, 2]
 Out[18]: 6
+
+三、numpy.random.rand的用法
+numpy.random.rand(d0, d1, ..., dn)
+Random values in a given shape.
+
+Create an array of the given shape and propagate it with random samples from a uniform distribution over [0, 1).
+
+Parameters:	
+d0, d1, ..., dn : int, optional
+The dimensions of the returned array, should all be positive. If no argument is given a single Python float is returned.
+Returns:	
+out : ndarray, shape (d0, d1, ..., dn)
+Random values.
+
+In [28]: import numpy as np
+
+In [29]: np.random.rand(10)
+Out[29]:
+array([ 0.15739813,  0.20072277,  0.59050452,  0.2905188 ,  0.04078619,
+        0.0574002 ,  0.86362808,  0.47083977,  0.66816951,  0.25789232])
+
+In [30]: np.random.rand(20)
+Out[30]:
+array([ 0.30028793,  0.69133696,  0.37302728,  0.23201657,  0.78414962,
+        0.63974193,  0.82765377,  0.50431118,  0.19832107,  0.76892101,
+        0.3486454 ,  0.95275364,  0.88586808,  0.61940443,  0.67783129,
+        0.01398113,  0.43232881,  0.52726331,  0.62730181,  0.0520378 ])
+
+In [31]: np.random.rand(30)
+Out[31]:
+array([ 0.73808824,  0.73518253,  0.77096631,  0.2794622 ,  0.18399594,
+        0.72584303,  0.47971212,  0.23739374,  0.46136878,  0.44484893,
+        0.01214955,  0.37601848,  0.9491249 ,  0.65976316,  0.4398049 ,
+        0.64261295,  0.07085426,  0.29467102,  0.85949318,  0.91488386,
+        0.4300409 ,  0.8275992 ,  0.39781878,  0.99314857,  0.67549572,
+        0.03384643,  0.554555  ,  0.98039166,  0.77799459,  0.63633026])
+
+In [32]:
