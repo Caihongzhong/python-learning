@@ -1,3 +1,4 @@
+一、
 eg1:
 import matplotlib.pyplot as plt 
 plt.plot([2, 3, 4, 5])
@@ -216,6 +217,18 @@ d			Thin diamond marker
 _			Horizontal line (hline symbol) marker
 
 
+二、
+matplotlib.dates.date2num(d)、matplotlib.dates.num2date(x, tz=None)、matplotlib.dates.drange(dstart, dend, delta)的用法：
+1、
+import matplotlib as mpl 
+import matplotlib.pyplot as plt 
+import numpy as np 
+from datetime import datetime 
+from datetime import timedelta 
+dates = [datetime.today() + timedelta(days=i) for i in range(10)]
+values = np.random.rand(len(dates))
+plt.plot_date(mpl.dates.date2num(dates), values, linestyle='-')
+plt.show()
 
 
 
