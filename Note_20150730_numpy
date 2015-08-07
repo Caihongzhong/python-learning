@@ -111,6 +111,7 @@ numpy.random.rand(d0, d1, ..., dn)
 Random values in a given shape.
 
 Create an array of the given shape and propagate it with random samples from a uniform distribution over [0, 1).
+在[0, 1)之间随机生成n个数。
 
 Parameters:	
 d0, d1, ..., dn : int, optional
