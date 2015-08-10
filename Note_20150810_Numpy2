@@ -1,0 +1,191 @@
+http://pda.readthedocs.org/en/latest/chp4.html
+
+1. NumPy, 是高性能计算和数据分析的基础包。
+
+ndarray，快速和节省空间的多维数组，提供数组化的算术运算和高级的 广播 功能。
+
+使用标准数学函数对整个数组的数据进行快速运算，而不需要编写循环。
+
+读取/写入磁盘上的阵列数据和操作存储器映像文件的工具。
+
+线性代数，随机数生成，和傅里叶变换的能力。
+
+集成C，C++，Fortran代码的工具。
+
+1.1 NumPy ndarray: 多维数组对象
+
+ndarray是一个同种类数据的多维容器，也就是说，它的所有元素都是同类型的。
+In [4]: data = np.array([[0.9526, -0.246, -0.8856], [0.5639, 0.2379, 0.9104]])
+
+In [5]: data
+Out[5]:
+array([[ 0.9526, -0.246 , -0.8856],
+       [ 0.5639,  0.2379,  0.9104]])
+
+In [6]: data * 10
+Out[6]:
+array([[ 9.526, -2.46 , -8.856],
+       [ 5.639,  2.379,  9.104]])
+
+In [7]: data.dtype
+Out[7]: dtype('float64')
+
+In [8]: data.shape
+Out[8]: (2L, 3L)
+
+1.1.1 创建ndarray
+最简单的创建数组的方式是使用array函数。它接受任何数组对象（list，还包括其他数组）
+In [9]: data1 = [6, 7.5, 8, 0,1]
+
+In [10]: arr1 = np.array(data1)
+
+In [11]: arr1
+Out[11]: array([ 6. ,  7.5,  8. ,  0. ,  1. ])
+
+In [12]: arr1.dtype
+Out[12]: dtype('float64')
+
+嵌套序列，如等长列表的列表，将会转化为一个多维数组：
+
+In [13]: data2 = [[1, 2, 3, 4], [5, 6, 7, 8]]
+
+In [14]: arr2 = np.array(data2)
+
+In [15]: arr2
+Out[15]:
+array([[1, 2, 3, 4],
+       [5, 6, 7, 8]])
+
+In [16]: arr2.ndim
+Out[16]: 2
+
+In [17]: arr2.shape
+Out[17]: (2L, 4L)
+
+In [18]: arr2.dtype
+Out[18]: dtype('int32')
+
+除 np.array 之外，还有许多函数来创建新的数组。
+例如， zeros 和 ones 使用给定的长度或形状分别的创建0‘s 和 1‘s数组。 
+empty 会创建一个没有使用特定值来初始化的数组。给这些方法传递一个元组作为形状来创建高维数组：
+
+In [19]: np.zeros(10)
+Out[19]: array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.])
+
+In [20]: np.zeros((3, 6))
+Out[20]:
+array([[ 0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.]])
+
+In [21]: np.empty((2, 3, 2))
+Out[21]:
+array([[[  9.09080788e-322,   0.00000000e+000],
+        [  0.00000000e+000,   0.00000000e+000],
+        [  0.00000000e+000,   0.00000000e+000]],
+
+       [[  0.00000000e+000,   0.00000000e+000],
+        [  0.00000000e+000,   0.00000000e+000],
+        [  0.00000000e+000,   0.00000000e+000]]])
+  
+        
+arange 是Python内建 range 函数的数组版本：
+In [22]: np.arange(15)
+Out[22]: array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
+
+1.1.2 ndarray的数据类型
+In [23]: arr1 = np.array([1, 2, 3], dtype=np.float64)
+
+In [24]: arr2 = np.array([1, 2, 3], dtype=np.int32)
+
+In [25]: arr1.dtype
+Out[25]: dtype('float64')
+
+In [26]: arr2.dtype
+Out[26]: dtype('int32')
+
+NumPy数据类型
+类型	类型码	描述
+类型	类型码	描述
+int8, uint8	i1, u1	有符号和无符号8位（1字节）整数类型
+int16, uint16	i2, u2	有符号和无符号16位整数类型
+int32, uint32	i4, u4	有符号和无符号32位整数类型
+int64, uint64	i8, u8	有符号和无符号64位整数类型
+float16	f2	半精度浮点类型
+float32	f4 or f	标准精度浮点。与C的 float 兼容
+float64, float128	f8 or d	标准双精度浮点。与C的 double 和Python 的 folat 对象兼容
+float128	f16 or g	扩展精度浮点
+complex64, complex128, complex256	c8, c16, c32	分别使用两个32，64，128位浮点表示的复数
+bool	?	布尔值，存储 True 和 False
+object	O	Python对象类型
+string_	S	定长字符窜类型（每字符一字节）。例如，为了生成长度为10的字符窜，使用 ‘S10’
+unicode_	f16 or g	扩展精度浮点（字节书依赖平台）。同 string_ 有相同的语义规范（例如：U10 ）
+
+可以使用ndarray的astype方法显示的把一个数组的dtype转换或投射到另外的类型：
+In [27]: arr = np.array([1, 2, 3, 4, 5])
+
+In [28]: arr.dtype
+Out[28]: dtype('int32')
+
+In [29]: float_arr = arr.astype(np.float64)
+
+In [30]: float_arr.dtype
+Out[30]: dtype('float64')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
