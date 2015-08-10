@@ -133,6 +133,21 @@ In [30]: float_arr.dtype
 Out[30]: dtype('float64')
 
 
+In [31]: arr = np.array([3.7, -1.2, -2.6, 0.5, 12.9, 10.1])
+
+In [32]: arr
+Out[32]: array([  3.7,  -1.2,  -2.6,   0.5,  12.9,  10.1])
+
+In [33]: arr.astype(np.int32)
+Out[33]: array([ 3, -1, -2,  0, 12, 10])
+
+string类型转换为float类型
+In [34]: numeric_strings = np.array(['1.23', '-9.6', '42'], dtype=np.string_)
+
+In [35]: numeric_strings.astype(float)
+Out[35]: array([  1.23,  -9.6 ,  42.  ])
+
+
 
 
 
