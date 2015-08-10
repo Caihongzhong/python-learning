@@ -1,3 +1,17 @@
+http://old.sebug.net/paper/books/scipydoc/matplotlib_intro.html
+
+http://matplotlib.org/api/pyplot_api.html
+
+http://matplotlib.org/examples/pylab_examples/step_demo.html
+
+http://old.sebug.net/paper/books/scipydoc/numpy_intro.html
+
+http://hyry.dip.jp/tech/book/page/scipy/numpy_ndarray.html
+
+https://www.academia.edu/6393099/5
+
+http://pda.readthedocs.org/en/latest/chp4.html
+
 一、
 eg1:
 import matplotlib.pyplot as plt 
