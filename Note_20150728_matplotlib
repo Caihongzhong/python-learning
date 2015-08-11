@@ -246,7 +246,7 @@ plt.show()
 
 
 三、
-
+figure()创建figure对象
 label : 给所绘制的曲线一个名字，此名字在图示(legend)中显示。只要在字符串前后添加"$"符号，
 matplotlib就会使用其内嵌的latex引擎绘制的.
 
@@ -289,6 +289,26 @@ x = np.arange(0, 5, 0.1)
 line, = plt.plot(x, x*x)
 line.set_antialiased(False)
 plt.show()
+
+绘制多轴图，subplot(numRows, numCols, plotNum)
+
+import matplotlib.pyplot as plt 
+
+for idx, color in enumerate("rgbyck"):
+	plt.subplot(320+idx+1, axisbg=color)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
