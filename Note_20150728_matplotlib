@@ -245,9 +245,50 @@ plt.plot_date(mpl.dates.date2num(dates), values, linestyle='-')
 plt.show()
 
 
+三、
 
+label : 给所绘制的曲线一个名字，此名字在图示(legend)中显示。只要在字符串前后添加"$"符号，
+matplotlib就会使用其内嵌的latex引擎绘制的.
 
+color : 指定曲线的颜色
 
+linewidth : 指定曲线的宽度
+
+xlabel : 设置X轴的文字
+ylabel : 设置Y轴的文字
+title : 设置图表的标题
+ylim : 设置Y轴的范围
+legend : 显示图示
+
+eg1:
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+import matplotlib
+
+x = np.linspace(0, 10, 1000)
+y = np.sin(x)
+z = np.cos(x**2)
+
+fig = plt.figure(figsize=(8, 4))
+plt.plot(x, y, label="$sin(x)$", color="red", linewidth=2)
+plt.plot(x, z, "b--", label="$cos(x^2)$")
+plt.xlabel("Time(s)")
+plt.ylabel("Volt")
+plt.title("Pyplot First Example")
+plt.ylim(-1.2, 1.2)
+plt.legend() 
+plt.show()
+
+通过调用Line2D对象line的set_antialiased方法，关闭对象的反锯齿效果。
+eg2:
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.arange(0, 5, 0.1)
+line, = plt.plot(x, x*x)
+line.set_antialiased(False)
+plt.show()
 
 
 
