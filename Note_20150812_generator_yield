@@ -27,3 +27,31 @@ StopIteration                             Traceback (most recent call last)
 ----> 1 print x.next()
 
 StopIteration:
+
+eg2:
+
+In [70]: the_list = [2*x for x in range(5)]
+
+In [71]: type(the_list)
+Out[71]: list
+
+In [72]: for element in the_list:
+   ....:     print element
+   ....:
+0
+2
+4
+6
+8
+
+In [73]: the_generator = (x+x for x in range(3))
+
+In [74]: type(the_generator)
+Out[74]: generator
+
+In [75]: for element in the_generator:
+   ....:     print element
+   ....:
+0
+2
+4
