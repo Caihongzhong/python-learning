@@ -79,4 +79,24 @@ In [29]: print get_prime(100)
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
  79, 83, 89, 97]
 
- 
+
+Another solution, I prefer this solution because is_prime() function is defined and boolean value 'True' or 'False' is returned
+and we can pass a list to get_prime() function to get the prime list:
+def is_prime(number):
+	if number > 1:
+		if number == 2:
+			return True 
+		for current in [2, 3, 5, 7]:
+			if number % current == 0:
+				return False 
+		return True 
+	return False
+	
+def get_prime2(input_list):
+	result_list = list()
+	for element in input_list:
+		if is_prime(element):
+			result_list.append(element)
+	return result_list
+
+get_prime2(range(1000000))
