@@ -318,7 +318,33 @@ In [25]: d = 10.0 / 3
 In [26]: print "%.2f" % d
 3.33
 
+How to copy a list?
+eg:
+1. listB = listA ,不能用这种方式，listA的值修改后，listB中的值也修改了，实际上，listB和listA指向同一个list
+In [28]: listA = [1, 4, 2, 9, 6, 1]
 
+In [29]: listB = listA
+
+In [30]: listB
+Out[30]: [1, 4, 2, 9, 6, 1]
+
+In [31]: listA[0] = 0
+
+In [32]: listA
+Out[32]: [0, 4, 2, 9, 6, 1]
+
+In [33]: listB
+Out[33]: [0, 4, 2, 9, 6, 1]
+
+2. listB.extend(listA)，正确
+In [34]: listA = [1, 4, 2, 9, 6, 1]
+
+In [35]: listB = []
+
+In [36]: listB.extend(listA)
+
+In [37]: listB
+Out[37]: [1, 4, 2, 9, 6, 1]
 
 
 
