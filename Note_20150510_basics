@@ -283,6 +283,21 @@ print s
 结果：
 set(['Bart'])
 
+eg: reverse a string or a list
+
+In [15]: s = 'abc'
+
+In [16]: s = s[::-1]
+
+In [17]: s
+Out[17]: 'cba'
+
+In [18]: list = [1, 2, 3, 4, 5]
+
+In [19]: list = list[::-1]
+
+In [20]: list
+Out[20]: [5, 4, 3, 2, 1]
 
 
 
