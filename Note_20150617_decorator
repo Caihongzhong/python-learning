@@ -32,3 +32,66 @@ def factorial(n):
     return reduce(lambda x,y: x*y, range(1, n+1))
 
 print factorial(10)
+
+三、example
+
+import time
+
+def performance(f): 
+	def fn(number): 
+		start = time.time() 
+		nums = f(number)
+		end = time.time() 
+		time_consuming = end - start 
+		print 'call %s() in %fs' % (f.__name__, time_consuming)
+		return nums 
+	return fn
+
+@performance
+def get_prime(number):
+    if number <= 1:
+        return None
+    else:
+        nums = range(2, number)
+        for i in range(2, 10):
+            nums = filter(lambda x: x == i or x % i, nums)
+        return nums
+
+@performance
+def get_prime1(number):
+    if number <= 1:
+        return None
+    else:
+        nums = range(2, number)
+        for i in [2, 3, 5, 7]:
+            nums = filter(lambda x: x == i or x % i, nums)
+        return nums
+        
+get_prime(1000000)
+get_prime1(1000000)
+
+result:
+call get_prime() in 0.496000s
+call get_prime1() in 0.396000s
+[Finished in 1.3s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
