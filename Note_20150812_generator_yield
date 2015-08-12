@@ -1,0 +1,29 @@
+eg1:
+In [63]: def city_generator():
+   ....:     yield("Konstanz")
+   ....:     yield("Zurich")
+   ....:     yield("Schaffhausen")
+   ....:     yield("Stuttgart")
+   ....:
+
+In [64]: x = city_generator()
+
+In [65]: print x.next()
+Konstanz
+
+In [66]: print x.next()
+Zurich
+
+In [67]: print x.next()
+Schaffhausen
+
+In [68]: print x.next()
+Stuttgart
+
+In [69]: print x.next()
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+<ipython-input-69-e7fd9557c5e5> in <module>()
+----> 1 print x.next()
+
+StopIteration:
