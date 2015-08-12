@@ -1,0 +1,82 @@
+Find prime number up to 100:
+code:
+In [11]: def get_prime():
+   ....:     nums = range(2, 100)
+   ....:     for i in range(2, 10):
+   ....:         nums = filter(lambda x: x == i or x % i, nums)
+   ....:     print nums
+   ....:
+In [12]: get_prime()
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+ 79, 83, 89, 97]
+ 
+Find prime number up to number:
+code 1:
+In [13]: def get_prime(number):
+   ....:     if number <= 1:
+   ....:         return None
+   ....:     else:
+   ....:         nums = range(2, number)
+   ....:         for i in range(2, 10):
+   ....:             nums = filter(lambda x: x == i or x % i, nums)
+   ....:         return nums
+   ....:
+
+In [14]: get_prime(1)
+
+In [15]: print get_prime(1)
+None
+
+In [16]: print get_prime(2)
+[]
+
+In [17]: print get_prime(9)
+[2, 3, 5, 7]
+
+In [18]: print get_prime(7)
+[2, 3, 5]
+
+In [19]: print get_prime(8)
+[2, 3, 5, 7]
+
+In [20]: print get_prime(3)
+[2]
+
+In [21]: print get_prime(19)
+[2, 3, 5, 7, 11, 13, 17]
+
+In [22]: print get_prime(100)
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+ 79, 83, 89, 97]
+ 
+code2:
+In [23]: def get_prime(number):
+   ....:     if number <= 1:
+   ....:         return None
+   ....:     else:
+   ....:         nums = range(2, number)
+   ....:         for i in [2, 3, 5, 7]:
+   ....:             nums = filter(lambda x: x==i or x%i, nums)
+   ....:         return nums
+   ....:
+
+In [24]: print get_prime(1)
+None
+
+In [25]: print get_prime(2)
+[]
+
+In [26]: print get_prime(3)
+[2]
+
+In [27]: print get_prime(4)
+[2, 3]
+
+In [28]: print get_prime(10)
+[2, 3, 5, 7]
+
+In [29]: print get_prime(100)
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+ 79, 83, 89, 97]
+
+ 
