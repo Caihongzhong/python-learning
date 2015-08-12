@@ -1,0 +1,20 @@
+sorted(iterable[, cmp[, key[, reverse]]])和list.sort()的区别：
+
+code1:
+In [11]: list = [2, 4, 1, 10, 9, 5, 8]
+
+In [12]: list1 = sorted(list)
+
+In [13]: list1
+Out[13]: [1, 2, 4, 5, 8, 9, 10]
+
+In [14]: list
+Out[14]: [2, 4, 1, 10, 9, 5, 8]
+
+code2:
+In [1]: list = [2, 4, 1, 10, 9, 5, 8]
+
+In [2]: list.sort()
+
+In [3]: list
+Out[3]: [1, 2, 4, 5, 8, 9, 10]
