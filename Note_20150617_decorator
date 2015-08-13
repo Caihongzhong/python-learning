@@ -91,6 +91,31 @@ def fn_timer(function):
 		return result 
 	return function_timer
 
+五、检测内存占用
+1、安装两个包
+pip install -U memory_profiler
+
+pip install  psutil
+
+2、在需要检测的方法前加上@profile
+@profile
+def random_sort(n):
+	return sorted([random.random() for i in range(n)])
+	
+3、运行py文件
+D:\python脚本\decorator>python -m memory_profiler eg6.py
+Filename: eg6.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    15   13.633 MiB    0.000 MiB   @profile
+    16                             # @fn_timer
+    17                             def random_sort(n):
+    18  139.488 MiB  125.855 MiB        return sorted([random.random() for i in
+range(n)])
+
+
+	
 
 
 
