@@ -307,6 +307,47 @@ set(list1) - set(list2)	difference	在 list1 中出现但不在 list2 中出现�
 
 range 用 xrange 代替
 
+九、字符串的优化，使用 + 连接字符串和str.join()连接字符串, str.join()比 + 快了四十多倍
+code:
+import time
+from functools import wraps 
+
+def performance(f): 
+	@wraps(f)
+	def fn(): 
+		start = time.time() 
+		result = f()
+		end = time.time() 
+		time_consuming = end - start 
+		print 'call %s() in %fs' % (f.__name__, time_consuming)
+		return result 
+	return fn 
+
+@performance
+def test():
+	s = ""
+	list1 = ['a', 'b', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+	for i in range(1000000):
+		for substr in list1:
+			s += substr 
+	return s
+
+@performance
+def test1():
+	s = ""
+	list1 = ['a', 'b', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+	for i in range(1000000):
+		s = ''.join(list1)
+	return s
+
+test()
+test1()
+
+结果：
+call test() in 8.660000s
+call test1() in 0.173000s
+[Finished in 9.1s]
+
 
 
 
