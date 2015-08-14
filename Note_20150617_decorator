@@ -114,6 +114,47 @@ Line #    Mem usage    Increment   Line Contents
     18  139.488 MiB  125.855 MiB        return sorted([random.random() for i in
 range(n)])
 
+六、cProfile模块进行性能分析
+安装pip install cprofilev
+code:
+def sum_num(max_num):
+	total = 0 
+	for i in range(max_num):
+		total += i 
+	return total 
+
+def test():
+	total = 0 
+	for i in range(40000):
+		total += i 
+
+	t1 = sum_num(100000)
+	t2 = sum_num(400000)
+
+	return total 
+
+if __name__ == "__main__":
+	import cProfile
+
+	# print the analysis result to the console
+	cProfile.run("test()")
+	# save the analysis result to a file
+	cProfile.run("test()", filename="result.out")
+	# add a sorting method
+	cProfile.run("test()", filename="result.out", sort="cumulative")
+
+result:
+        8 function calls in 0.046 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.046    0.046 <string>:1(<module>)
+        2    0.037    0.018    0.044    0.022 cprofile_test.py:1(sum_num)
+        1    0.001    0.001    0.046    0.046 cprofile_test.py:7(test)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        3    0.008    0.003    0.008    0.003 {range}
+
 
 	
 
