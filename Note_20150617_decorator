@@ -155,9 +155,78 @@ result:
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
         3    0.008    0.003    0.008    0.003 {range}
 
+七、数据结构dictionary和list的性能比较
+eg1：
+import time
+from functools import wraps 
 
+def performance(f): 
+	@wraps(f)
+	def fn(): 
+		start = time.time() 
+		result = f()
+		end = time.time() 
+		time_consuming = end - start 
+		print 'call %s() in %fs' % (f.__name__, time_consuming)
+		return result 
+	return fn 
+
+@performance 
+def test():
+	list1 = ['a', 'b', 'is', 'python', 'jason', 'hello', 'hill', 'with', 'phone', 'test',\
+	'dfdf', 'apple', 'pddf', 'ind', 'basic', 'none', 'baecr', 'var', 'bana', 'dd', 'wrd']
+	list1 = dict.fromkeys(list1, True)
+	print list1 
+	filter = []
+	for i in range(1000000):
+		for find in ['is', 'hat', 'new', 'list', 'old', '.']:
+			if find not in list1:
+				filter.append(find)
+	return filter
+
+test()
+
+结果：
+{'a': True, 'none': True, 'b': True, 'jason': True, 'apple': True, 'python': True, 'is': True, 'dd': True, 'dfdf': True, 'wrd': True, 'baecr': True, 'var': True, 'phone': True, 'ind': True, 'bana': True, 'hill': True, 'pddf': True, 'basic': True, 'test': True, 'with': True, 'hello': True}
+call test() in 0.817000s
+[Finished in 1.2s]
 	
+eg2：
+import time
+from functools import wraps 
 
+def performance(f): 
+	@wraps(f)
+	def fn(): 
+		start = time.time() 
+		result = f()
+		end = time.time() 
+		time_consuming = end - start 
+		print 'call %s() in %fs' % (f.__name__, time_consuming)
+		return result 
+	return fn 
+
+@performance 
+def test():
+	list1 = ['a', 'b', 'is', 'python', 'jason', 'hello', 'hill', 'with', 'phone', 'test',\
+	'dfdf', 'apple', 'pddf', 'ind', 'basic', 'none', 'baecr', 'var', 'bana', 'dd', 'wrd']
+	# list1 = dict.fromkeys(list1, True)
+	print list1 
+	filter = []
+	for i in range(1000000):
+		for find in ['is', 'hat', 'new', 'list', 'old', '.']:
+			if find not in list1:
+				filter.append(find)
+	return filter
+
+test()
+
+注释掉list1 = dict.fromkeys(list1, True)后，结果：
+['a', 'b', 'is', 'python', 'jason', 'hello', 'hill', 'with', 'phone', 'test', 'dfdf', 'apple', 'pddf', 'ind', 'basic', 'none', 'baecr', 'var', 'bana', 'dd', 'wrd']
+call test() in 2.152000s
+[Finished in 2.5s]
+
+结论：在需要多数据成员进行频繁的查找或者访问的时候，使用 dict 而不是 list 是一个较好的选择。
 
 
 
