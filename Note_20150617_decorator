@@ -307,7 +307,8 @@ set(list1) - set(list2)	difference	在 list1 中出现但不在 list2 中出现�
 
 range 用 xrange 代替
 
-九、字符串的优化，使用 + 连接字符串和str.join()连接字符串, str.join()比 + 快了四十多倍
+九、字符串的优化，
+1.使用 + 连接字符串和str.join()连接字符串, str.join()比 + 快了四十多倍
 code:
 import time
 from functools import wraps 
@@ -349,6 +350,30 @@ call test1() in 0.173000s
 [Finished in 9.1s]
 
 
+2. 当对字符串可以使用正则表达式或者内置函数来处理的时候，选择内置函数。
+如 str.isalpha()，str.isdigit()，str.startswith(('x', 'yz'))，str.endswith(('x', 'yz'))
+
+3. 对字符进行格式化比直接串联读取要快，因此要使用
+out = "<html>%s%s%s%s</html>" % (head, prologue, query, tail)
+
+而避免
+out = "<html>" + head + prologue + query + tail + "</html>"
+
+其他优化技巧：
+1. 在循环的时候使用 xrange 而不是 range；使用 xrange 可以节省大量的系统内存，因为 xrange() 在序列中每次调用只产生一个整数元素。
+而 range() 將直接返回完整的元素列表，用于循环时会有不必要的开销。在 python3 中 xrange 不再存在，里面 range 提供一个可以遍历任意长度的范围的 iterator。
+
+2. 使用局部变量，避免"global" 关键字。python 访问局部变量会比全局变量要快得多，因	此可以利用这一特性提升性能。
+
+3. if done is not None 比语句 if done != None 更快，读者可以自行验证；
+
+4. 在耗时较多的循环中，可以把函数的调用改为内联的方式；
+
+5. 使用级联比较 "x < y < z" 而不是 "x < y and y < z"；
+
+6. while 1 要比 while True 更快（当然后者的可读性更好）；
+
+7. build in 函数通常较快，add(a,b) 要优于 a+b。
 
 
 
