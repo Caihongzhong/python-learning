@@ -273,18 +273,39 @@ def test2():
 	for i in range(1000000):
 		intersection = list(set(lista)&set(listb))
 	return intersection
+	
+@performance 
+def test3():
+	lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 34, 53, 42, 44]
+	listb = [2, 4, 6, 9, 23]
+	intersection = []
+	for i in xrange(1000000):
+		intersection = list(set(lista)&set(listb))
+	return intersection
 
 test()
 test1()
 test2()
+test3()
 
 结果：
-call test() in 2.855000s
-call test1() in 2.375000s
-call test2() in 1.282000s
-[Finished in 6.9s]
+call test() in 2.847000s
+call test1() in 2.389000s
+call test2() in 1.277000s
+call test3() in 1.265000s
+[Finished in 8.1s]
 
+结论：
+set 的 union， intersection，difference 操作要比 list 的迭代要快。
+因此如果涉及到求 list 交集，并集或者差的问题可以转换为 set 来操作。
 
+set常见用法：
+语法	操作	说明
+set(list1) | set(list2)	union	包含 list1 和 list2 所有数据的新集合
+set(list1) & set(list2)	intersection	包含 list1 和 list2 中共同元素的新集合
+set(list1) - set(list2)	difference	在 list1 中出现但不在 list2 中出现的元素的集合
+
+range 用 xrange 代替
 
 
 
