@@ -155,7 +155,8 @@ result:
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
         3    0.008    0.003    0.008    0.003 {range}
 
-七、数据结构dictionary和list的性能比较
+七、在算法的时间复杂度排序上依次是：O(1) -> O(lg n) -> O(n lg n) -> O(n^2) -> O(n^3) -> O(n^k) -> O(k^n) -> O(n!)
+数据结构dictionary和list的性能比较
 eg1：
 import time
 from functools import wraps 
@@ -227,6 +228,61 @@ call test() in 2.152000s
 [Finished in 2.5s]
 
 结论：在需要多数据成员进行频繁的查找或者访问的时候，使用 dict 而不是 list 是一个较好的选择。
+
+八、list、列表推导式、set性能比较
+code:
+import time
+from functools import wraps 
+
+def performance(f): 
+	@wraps(f)
+	def fn(): 
+		start = time.time() 
+		result = f()
+		end = time.time() 
+		time_consuming = end - start 
+		print 'call %s() in %fs' % (f.__name__, time_consuming)
+		return result 
+	return fn 
+
+@performance
+def test():
+	lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 34, 53, 42, 44]
+	listb = [2, 4, 6, 9, 23]
+	intersection = []
+	for i in range(1000000):
+		for a in lista:
+			for b in listb:
+				if a == b:
+					intersection.append(a)
+	return intersection
+
+@performance
+def test1():
+	lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 34, 53, 42, 44]
+	listb = [2, 4, 6, 9, 23]
+	for i in range(1000000):
+		intersection = [x for x in lista for y in listb if x == y]
+	return intersection
+
+@performance 
+def test2():
+	lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 34, 53, 42, 44]
+	listb = [2, 4, 6, 9, 23]
+	intersection = []
+	for i in range(1000000):
+		intersection = list(set(lista)&set(listb))
+	return intersection
+
+test()
+test1()
+test2()
+
+结果：
+call test() in 2.855000s
+call test1() in 2.375000s
+call test2() in 1.282000s
+[Finished in 6.9s]
 
 
 
