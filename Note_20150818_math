@@ -1,0 +1,10 @@
+1. math.exp(x)
+math.exp(x)
+Return e**x
+
+In [1]: import math
+
+In [2]: e = math.exp(1.0)
+
+In [3]: e
+Out[3]: 2.718281828459045
