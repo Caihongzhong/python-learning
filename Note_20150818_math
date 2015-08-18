@@ -9,4 +9,17 @@ In [2]: e = math.exp(1.0)
 In [3]: e
 Out[3]: 2.718281828459045
 
+2. 求圆的面积
+In [5]: def area(radius):
+   ...:     temp = math.pi * radius ** 2
+   ...:     return temp
+   ...:
+   
+3. 求绝对值
+In [7]: def absolute_value(x):
+   ...:     if x < 0:
+   ...:         return -x
+   ...:     else:
+   ...:         return x
+   
 
