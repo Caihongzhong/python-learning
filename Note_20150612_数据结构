@@ -17,6 +17,21 @@ In [50]: print t1
 In [51]: print t2
 ['d', 'e']
 
+def capitalize_all(t):
+	res = []
+	for item in t:
+		res.append(item.capitalize())
+	return res
+	
+def only_upper(t):
+	res = []
+	for s in t:
+		if s.isupper():
+			res.append(s)
+	return res
+
+isupper is a string method that returns true if it contains only upper case letters
+
 list.insert(i, x)
 在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个链表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。
 
