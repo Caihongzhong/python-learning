@@ -16,4 +16,59 @@ TypeError                                 Traceback (most recent call last)
 ----> 1 greeting[0] = 'J'
 
 TypeError: 'str' object does not support item assignment
-                                                                 allen
+
+3.str.upper
+In [17]: word = 'banana'
+
+In [18]: new_word = word.upper()
+
+In [19]: print new_word
+BANANA
+
+4. str.find()
+
+In [20]: index = word.find('a')
+
+In [21]: index
+Out[21]: 1
+
+In [22]: word.find('na')
+Out[22]: 2
+
+In [23]: word.find('na', 3)
+Out[23]: 4
+
+5. str.count()
+In [24]: word = 'banana'
+
+In [25]: word.count('b')
+Out[25]: 1
+
+In [26]: word.count('a', 2)
+Out[26]: 2
+
+6. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
