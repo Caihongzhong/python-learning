@@ -190,7 +190,9 @@ orange
 pear
 
 
-
+6. 函数式编程： filter， map，reduce
+print map(lambda x: x.capitalize(), ['hello', 'world'])
+print filter(lambda x: x.isupper(), ['HELLO', 'world'])
 
 
 
