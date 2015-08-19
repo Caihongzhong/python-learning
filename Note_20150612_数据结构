@@ -195,6 +195,30 @@ print map(lambda x: x.capitalize(), ['hello', 'world'])
 print filter(lambda x: x.isupper(), ['HELLO', 'world'])
 
 
+7. str.split(), return a list
+In [73]: s = 'pining for the fjords'
+
+In [74]: t = s.split()
+
+In [75]: t
+Out[75]: ['pining', 'for', 'the', 'fjords']
+
+In [76]: s = 'spam-spam-spam'
+
+In [77]: delimiter = '-'
+
+In [78]: s.split(delimiter)
+Out[78]: ['spam', 'spam', 'spam']
+
+8. str.join() takes a list as a parameter and return a string
+In [79]: t = ['pining', 'for', 'the', 'fjords']
+
+In [80]: delimiter = ' '
+
+In [81]: delimiter.join(t)
+Out[81]: 'pining for the fjords'
+
+
 
 
 
