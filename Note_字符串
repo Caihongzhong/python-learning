@@ -5,4 +5,15 @@ In [8]: def right_justify(name):
    ...:
 
 In [9]: right_justify('allen')
+
+2. Strings are immutable
+In [12]: greeting = 'Hello, world!'
+
+In [13]: greeting[0] = 'J'
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-13-427da798e23b> in <module>()
+----> 1 greeting[0] = 'J'
+
+TypeError: 'str' object does not support item assignment
                                                                  allen
