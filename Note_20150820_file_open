@@ -1,0 +1,7 @@
+1. file()和open()的区别
+open(name[, mode[, buffering]]) 
+open a file, returning an object of the file type. When opening a file, it's preferable to use open() instead of invoking
+the file constructor directly.
+
+file(name[, mode[, buffering]])
+constructor function for the file type.
