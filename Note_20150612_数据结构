@@ -50,6 +50,31 @@ list.count(x)
 list.sort()
 对链表中的元素就地进行排序。
 
+sort和sorted的区别
+In [11]: a = [5, 2, 1, 9, 6]
+
+In [12]: sorted(a)
+Out[12]: [1, 2, 5, 6, 9]
+
+In [13]: b = sorted(a)
+
+In [14]: b
+Out[14]: [1, 2, 5, 6, 9]
+
+In [15]: a
+Out[15]: [5, 2, 1, 9, 6]
+
+In [16]: a.sort()
+
+In [17]: a
+Out[17]: [1, 2, 5, 6, 9]
+
+In [18]: a.sort(reverse = True)
+
+In [19]: a
+Out[19]: [9, 6, 5, 2, 1]
+
+
 list.reverse()
 就地倒排链表中的元素。
 
