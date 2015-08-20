@@ -144,6 +144,30 @@ In [56]: for k, v in knights.items():
 ('gallahad', 'the pure')
 ('robin', 'the brave')
 
+In [1]: eng2sp = dict()
+
+In [2]: eng2sp
+Out[2]: {}
+
+In [3]: eng2sp['one'] = 'uno'
+
+In [4]: eng2sp
+Out[4]: {'one': 'uno'}
+
+In [5]: len(eng2sp)
+Out[5]: 1
+
+In [7]: 'one' in eng2sp
+Out[7]: True
+
+In [8]: 'uno' in eng2sp
+Out[8]: False
+
+In [9]: vals = eng2sp.values()
+
+In [10]: 'uno' in vals
+Out[10]: True
+
 2.在序列中循环时，索引位置和对应值可以使用 enumerate() 函数同时得到。
 In [57]: for i, v in enumerate(['tic', 'tac', 'toe']):
    ....:     print (i, v)
