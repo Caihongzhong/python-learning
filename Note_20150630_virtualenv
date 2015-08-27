@@ -44,5 +44,8 @@ Successfully installed twisted-15.2.1 zope.interface-4.1.2
 (my_test1) D:\python_env\my_test1\Scripts>deactivate.bat
 D:\python_env\my_test1\Scripts>
 
-
+创建并进入环境：mkvirtualenv env1
+退出环境：deactivate
+进入已存在的环境或者切换环境：workon env1或者env2
+删除环境： rmvirtualenv env1
 
