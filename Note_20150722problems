@@ -133,3 +133,73 @@ windows64bit机器上，把原先的PyQt4-4.11.4-cp27-none-win_amd64卸载，重
 spynner卸载，重新安装spynner-2.5，运行脚本，不报错
 
 
+20150911
+问题：virtualenv环境中运行脚本报错，exceptions.ImportError: No module named win32api
+解决方法：下载exe文件，并用easy_install安装，如下所示：
+(robot) D:\New python\Robot\test>easy_install D:\python_env\robot\pywin32-219.wi
+n-amd64-py2.7.exe
+Processing pywin32-219.win-amd64-py2.7.exe
+pywintypes: module references __file__
+win32evtlogutil: module references __file__
+win32serviceutil: module references __file__
+win32timezone: module references __file__
+Demos.win32rcparser_demo: module references __file__
+Demos.security.sspi.validate_password: module references __file__
+isapi.install: module references __file__
+isapi.samples.advanced: module references __file__
+isapi.samples.test: module references __file__
+pywin.framework.scriptutils: module references __file__
+pywin.framework.startup: module references __path__
+pywin.scintilla.config: module references __path__
+pywin.scintilla.control: module references __file__
+pywin.scintilla.IDLEenvironment: module references __file__
+scripts.regsetup: module references __file__
+scripts.setup_d: module references __file__
+test.testall: module references __file__
+test.test_clipboard: module references __file__
+test.test_win32api: module references __file__
+test.test_win32rcparser: module references __file__
+test.test_win32trace: module references __file__
+win32com.__init__: module references __path__
+win32com.server.register: module references __file__
+win32com.server.register: module references __path__
+win32com.test.GenTestScripts: module references __path__
+win32com.test.pippo_server: module references __file__
+win32com.test.testall: module references __file__
+win32com.test.testAXScript: module references __path__
+win32com.test.testDictionary: module references __file__
+win32com.test.testPippo: module references __file__
+win32com.test.testPyComTest: module references __file__
+win32com.test.testServers: module references __file__
+win32com.test.util: module references __file__
+win32comext.adsi.__init__: module references __path__
+win32comext.authorization.__init__: module references __path__
+win32comext.axcontrol.__init__: module references __path__
+win32comext.axdebug.codecontainer: module references __file__
+win32comext.axdebug.debugger: module references __file__
+win32comext.axdebug.__init__: module references __path__
+win32comext.axscript.__init__: module references __path__
+win32comext.bits.__init__: module references __path__
+win32comext.directsound.__init__: module references __path__
+win32comext.directsound.test.ds_test: module references __file__
+win32comext.internet.__init__: module references __path__
+win32comext.mapi.__init__: module references __path__
+win32comext.shell.__init__: module references __path__
+win32comext.shell.demos.servers.empty_volume_cache: module references __file__
+win32comext.shell.demos.servers.folder_view: module references __file__
+win32comext.taskscheduler.__init__: module references __path__
+creating 'c:\users\admini~1\appdata\local\temp\easy_install-dde2cc\pywin32-219-p
+y2.7-win-amd64.egg' and adding 'c:\users\admini~1\appdata\local\temp\easy_instal
+l-dde2cc\pywin32-219-py2.7-win-amd64.egg.tmp' to it
+creating d:\python_env\robot\lib\site-packages\pywin32-219-py2.7-win-amd64.egg
+Extracting pywin32-219-py2.7-win-amd64.egg to d:\python_env\robot\lib\site-packa
+ges
+Adding pywin32 219 to easy-install.pth file
+Installing pywin32_postinstall.py script to d:\python_env\robot\Scripts
+Installing pywin32_postinstall.pyc script to d:\python_env\robot\Scripts
+Installing pywin32_testall.py script to d:\python_env\robot\Scripts
+Installing pywin32_testall.pyc script to d:\python_env\robot\Scripts
+
+Installed d:\python_env\robot\lib\site-packages\pywin32-219-py2.7-win-amd64.egg
+Processing dependencies for pywin32==219
+Finished processing dependencies for pywin32==219
