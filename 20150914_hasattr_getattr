@@ -11,3 +11,10 @@ otherwise AttributeError is raised.
 3. hasattr(object, name)
 The arguments are an object and a string. 
 The result is True if the string is the name of one of the object’s attributes, False if not. 
+
+4. dict
+dict.update(dict2)
+dict2 -- This is the dictionary to be added into dict.
+
+Return Value
+This method does not return any value.
