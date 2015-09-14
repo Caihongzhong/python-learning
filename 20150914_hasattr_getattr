@@ -1,0 +1,13 @@
+1. super(type[, object-or-type])
+
+2. getattr(object, name[, default])
+Return the value of the named attribute of object. name must be a string. 
+If the string is the name of one of the object’s attributes, 
+the result is the value of that attribute. 
+For example, getattr(x, 'foobar') is equivalent to x.foobar. 
+If the named attribute does not exist, default is returned if provided, 
+otherwise AttributeError is raised.
+
+3. hasattr(object, name)
+The arguments are an object and a string. 
+The result is True if the string is the name of one of the object’s attributes, False if not. 
