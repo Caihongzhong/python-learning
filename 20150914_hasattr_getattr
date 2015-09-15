@@ -56,6 +56,17 @@ In [15]: os.rename("test/test1", "test/test2")
 In [16]: os.listdir("test")
 Out[16]: ['test2']
 
+In [17]: os.rename("test/test2", "test/test3")
+
+In [18]: os.rename("test/test3", "test1/test4")
+---------------------------------------------------------------------------
+WindowsError                              Traceback (most recent call last)
+<ipython-input-18-a78628186080> in <module>()
+----> 1 os.rename("test/test3", "test1/test4")
+
+WindowsError: [Error 3]
+
+In [19]: os.renames("test/test3", "test1/test4")
 
 
 
