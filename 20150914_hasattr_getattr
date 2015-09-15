@@ -22,3 +22,22 @@ This method does not return any value.
 5. isinstance(object, classinfo)
 Return true if the object argument is an instance of the classinfo argument,
 or of a (direct, indirect or virtual) subclass thereof.
+
+6. str.format(*args, **kwargs)
+Perform a string formatting operation. 
+The string on which this method is called can contain literal text or replacement fields delimited by braces {}. 
+Each replacement field contains either the numeric index of a positional argument, or the name of a keyword argument. 
+Returns a copy of the string where each replacement field is replaced with the string value of the corresponding argument.
+
+In [1]: "The sum of 1+2 is {0}".format(1+2)
+Out[1]: 'The sum of 1+2 is 3'
+
+In [2]: "The sum of 1+2 is {0} {1}".format(1+2, 3)
+Out[2]: 'The sum of 1+2 is 3 3'
+
+
+
+
+
+
+
