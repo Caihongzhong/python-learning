@@ -1,0 +1,37 @@
+1. 
+class DoubleRep(object):
+	def __str__(self):
+		return "a __str__"
+
+	def __repr__(self):
+		return "a __repr__"
+
+dr = DoubleRep()
+print dr
+print "%s" % dr
+print "%r" % dr
+
+result:
+a __str__
+a __str__
+a __repr__
+[Finished in 0.1s]
+
+2.
+class DoubleRep(object):
+	# def __str__(self):
+	# 	return "a __str__"
+
+	def __repr__(self):
+		return "a __repr__"
+
+dr = DoubleRep()
+print dr
+print "%s" % dr
+print "%r" % dr
+
+result:
+a __repr__
+a __repr__
+a __repr__
+[Finished in 0.1s]
