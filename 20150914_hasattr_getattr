@@ -18,3 +18,7 @@ dict2 -- This is the dictionary to be added into dict.
 
 Return Value
 This method does not return any value.
+
+5. isinstance(object, classinfo)
+Return true if the object argument is an instance of the classinfo argument,
+or of a (direct, indirect or virtual) subclass thereof.
