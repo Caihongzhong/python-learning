@@ -35,6 +35,27 @@ Out[1]: 'The sum of 1+2 is 3'
 In [2]: "The sum of 1+2 is {0} {1}".format(1+2, 3)
 Out[2]: 'The sum of 1+2 is 3 3'
 
+7. os模块os.rename
+In [6]: import os
+
+In [7]: os.mkdir("test")
+
+In [8]: os.getcwd()
+Out[8]: 'C:\\Users\\Administrator'
+
+In [9]: os.listdir("test")
+Out[9]: []
+
+In [11]: os.mkdir("test/test1")
+
+In [13]: os.listdir("test")
+Out[13]: ['test1']
+
+In [15]: os.rename("test/test1", "test/test2")
+
+In [16]: os.listdir("test")
+Out[16]: ['test2']
+
 
 
 
