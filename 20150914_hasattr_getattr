@@ -68,6 +68,45 @@ WindowsError: [Error 3]
 
 In [19]: os.renames("test/test3", "test1/test4")
 
+8. __getattr__ 和 __setattr__
+eg1:
+In [7]: class B(object):
+   ...:     pass
+   ...:
+
+In [8]: b = B()
+
+In [9]: b.x
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-9-4fa97807159e> in <module>()
+----> 1 b.x
+
+AttributeError: 'B' object has no attribute 'x'
+
+eg2：
+In [1]: class A(object):
+   ...:     def __getattr__(self, name):
+   ...:         print "You use getattr"
+   ...:     def __setattr__(self, name, value):
+   ...:         print "You use setattr"
+   ...:         self.__dict__[name] = value
+   ...:
+
+In [2]: a = A()
+
+In [3]: a.x
+You use getattr
+
+In [4]: a.y
+You use getattr
+
+In [5]: a.x = 3
+You use setattr
+
+In [6]: print a.x
+3
+
 
 
 
