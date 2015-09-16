@@ -110,7 +110,9 @@ In [6]: print a.x
 3
 
 
-
+9. instance.__class__
+instance.__class__
+The class to which a class instance belongs.
 
 
 
