@@ -69,6 +69,8 @@ WindowsError: [Error 3]
 In [19]: os.renames("test/test3", "test1/test4")
 
 8. __getattr__ 和 __setattr__
+通过实例获取其属性（也有说特性的，名词变化了，但是本质都是属性和方法），如果在__dict__中有相应的属性，就直接返回其结果；
+如果没有，会到__getattr__找。
 eg1:
 In [7]: class B(object):
    ...:     pass
