@@ -186,6 +186,14 @@ StopIteration:
 6. yield
 返回一个生成器
 
+7. 总结
+iterable objects: list, dictionary, file object
+iterator: eg. iter()
+generator: eg. yield
+
+iterable objects, iterators, generators can be traversed by 'for' statement.
+
+
 
 二、集合
 集合是一个无序不重复元素的集。基本功能包括关系测试和消除重复元素。
