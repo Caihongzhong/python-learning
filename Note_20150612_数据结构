@@ -186,7 +186,7 @@ StopIteration:
 6. yield
 返回一个生成器
 
-7. 总结
+7. 总结, 查看官方文档：http://anandology.com/python-practice-book/iterators.html
 iterable objects: list, dictionary, file object
 iterator: eg. iter()
 generator: eg. yield
