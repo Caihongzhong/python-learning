@@ -1,0 +1,38 @@
+使用枚举类
+
+Python提供了Enum类来实现这个功能：为枚举类型定义一个class类型，然后，每个常量都是class的一个唯一实例。
+
+eg1:
+In [12]: from enum import Enum
+
+In [13]: class QuotaCacheSetting(Enum):
+   ....:     IN_MEMORY = 0
+   ....:     IN_REDIS = 1
+   ....:
+
+In [14]: QuotaCacheSetting.IN_MEMORY
+Out[14]: <QuotaCacheSetting.IN_MEMORY: 0>
+
+In [16]: QuotaCacheSetting.IN_REDIS
+Out[16]: <QuotaCacheSetting.IN_REDIS: 1>
+
+eg2:
+
+In [19]: from enum import Enum, unique
+
+In [20]: @unique
+   ....: class Weekday(Enum):
+   ....:     Sun = 0
+   ....:     Mon = 1
+   ....:     Tue = 2
+   ....:     Wed = 3
+   ....:     Thu = 4
+   ....:     Fri = 5
+   ....:     Sat = 6
+   ....:
+
+In [21]: print Weekday.Mon
+Weekday.Mon
+
+
+@unique装饰器可以帮助我们检查保证没有重复值。
