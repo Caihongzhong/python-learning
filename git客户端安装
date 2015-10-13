@@ -1,0 +1,7 @@
+1. windows版本git客户端下载地址
+https://git-for-windows.github.io/
+
+2. 点击next安装
+
+3. 新建文件夹，如slowpoetry，右键点击git bash，弹出git bash框，git clone address下载
+
