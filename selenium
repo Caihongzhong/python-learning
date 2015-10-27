@@ -1,5 +1,22 @@
 selelium+python搭建环境：
 http://www.cnblogs.com/sunada2005/p/selenium.html
 
+1、Python环境搭建（参考Python-learning中Python环境搭建）
+本人搭建Python版本为2.7.6
+
+2、导入最新selenium模块
+pip install -U selenium
+
+3、安装Selenium server
+http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html下载jre环境并安装
+
+http://grokbase.com/t/gg/selenium-users/1448ast3pt/selenium-server-standalone-2-41-0-jar-appears-to-be-corrupt
+下载selenium-server-standalone-2.x.x.jar并启动，
+启动命令：java -jar selenium-server-standalone-2.x.x.jar
+
+4、安装chrome driver和IE driver
+http://www.cnblogs.com/fnng/archive/2013/05/29/3106515.html
+
+
 官方文档：
 http://selenium-python.readthedocs.org/en/latest/installation.html
