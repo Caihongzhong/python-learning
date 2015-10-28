@@ -25,6 +25,9 @@ https://sites.google.com/a/chromium.org/chromedriver/
 官方文档：
 http://selenium-python.readthedocs.org/en/latest/installation.html
 
+例子：
+http://www.cnblogs.com/wuzhiming/p/3463070.html
+
 
 
 地址栏输入chrome://plugins/可以开启/禁用chrome所有插件
