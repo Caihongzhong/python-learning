@@ -70,6 +70,8 @@ link\partial link
 find_element_by_link_text(u'新闻')
 find_element_by_partial_link_text('新')
 find_element_by_link_text(u'贴吧')
+一般一个页面上不会出现相同的文件链接，通过文字链接来定位元素也是一种简单有效的定位方式。
+
 
 xpath：
 使用FireBug查看元素，复制xpath
