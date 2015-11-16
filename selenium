@@ -22,7 +22,7 @@ https://sites.google.com/a/chromium.org/chromedriver/
 
 
 
-官方文档：
+5、官方文档：
 http://selenium-python.readthedocs.org/en/latest/installation.html
 
 例子：
@@ -33,6 +33,22 @@ http://www.testpub.cn/blog/
 
 地址栏输入chrome://plugins/可以开启/禁用chrome所有插件
 
+6、WebDriver 提供的八种定位方法：
+find_element_by_id()
+
+find_element_by_name()
+
+find_element_by_class_name()
+
+find_element_by_tag_name()
+
+find_element_by_link_text()
+
+find_element_by_partial_link_test()
+
+find_element_by_xpath()
+
+find_element_by_css_selector()
 
 
 Webdriver中比较常用的操作元素的方法：
