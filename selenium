@@ -76,6 +76,10 @@ find_element_by_link_text(u'贴吧')
 xpath：
 使用FireBug查看元素，复制xpath
 
+8. 下拉框的定位（二次定位）
+Select(driver.find_element_by_name("sheng")).select_by_visible_text(u"广东省")
+Select(driver.find_element_by_name("shi")).select_by_visible_text(u"深圳市")
+Select(driver.find_element_by_name("xian")).select_by_visible_text(u"罗湖区")
 
 
 
