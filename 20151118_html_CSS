@@ -1,0 +1,98 @@
+1. 
+<h1> 一级标题
+<h2> 二级标题
+<h3> 三级标题
+<h4> 四级标题
+<h5> 五级标题
+
+2.
+<q> 短引用
+<blockquote> 长引用
+
+3.
+<br/> xhtml 1.0的用法
+<br> 换行
+
+4. &nbsp; 空格
+
+5.
+<hr/> 水平横线(xhtml 1.0的用法)
+<hr>
+
+6.
+<address>地址信息，默认样式：斜体
+
+7.
+<code>标签：添加编程代码
+
+8.
+<pre> 加入大量代码
+<pre>语言代码段</pre>
+
+9. 
+<ul><li></li></ul> 无序列表
+<ol><li></li></ol> 有序列表
+
+10.
+<div> 容器
+id 唯一标识容器
+
+11. 创建表格的四个元素：
+table tbody th tr td
+
+12.
+<a>标签，连接到另一个界面
+<a  href="目标网址"  title="鼠标滑过显示的文本">链接显示的文本</a>
+<a href="http://www.m1905.com/mdb/star/3316/" target="_blank"> 在新窗口中打开链接的网页
+
+13.
+<img>
+<img src="图片地址" alt="下载失败时的替换文本" title = "提示文本">
+
+14. 
+<form> 表单
+<form   method="传送方式"   action="服务器文件">
+<form> ：<form>标签是成对出现的，以<form>开始，以</form>结束。
+action ：浏览者输入的数据被传送到的地方,比如一个PHP页面(save.php)。
+method ： 数据传送的方式（get/post）。
+
+1)、所有表单控件（文本框、文本域、按钮、单选框、复选框等）都必须放在<form></form>标签之间（否则用户输入的信息可提交不到服务器上哦！）。
+
+2)、method:post/get的区别这一部分内容属于后端程序员考虑的问题。感兴趣的小伙伴可以查看本小节的wiki，里面有详细介绍。
+
+15.
+<form>
+   <input type="text/password" name="名称" value="文本" />
+</form>
+1)、type：
+
+   当type="text"时，输入框为文本输入框;
+
+   当type="password"时, 输入框为密码输入框。
+
+2)、name：为文本框命名，以备后台程序ASP 、PHP使用。
+
+3)、value：为文本输入框设置默认值。(一般起到提示作用)
+
+16.
+<textarea  rows="行数" cols="列数">文本</textarea> 文本输入域
+
+17. 
+<input   type="radio/checkbox"   value="值"    name="名称"   checked="checked"/> 单选框、复选框
+1)、type:
+
+   当 type="radio" 时，控件为单选框
+
+   当 type="checkbox" 时，控件为复选框
+
+2)、value：提交数据到服务器的值（后台程序PHP使用）
+
+3)、name：为控件命名，以备后台程序 ASP、PHP 使用
+
+4)、checked：当设置 checked="checked" 时，该选项被默认选中
+
+18. 下拉列表
+<select>
+<option value="读书">读书</option>
+<option value="购物" selected="selected">购物</option>
+</select>
