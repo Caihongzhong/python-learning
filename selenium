@@ -77,10 +77,34 @@ xpath：
 使用FireBug查看元素，复制xpath
 
 8. 下拉框的定位（二次定位）
+方法一：
 Select(driver.find_element_by_name("sheng")).select_by_visible_text(u"广东省")
 Select(driver.find_element_by_name("shi")).select_by_visible_text(u"深圳市")
 Select(driver.find_element_by_name("xian")).select_by_visible_text(u"罗湖区")
 
+方法二：
+# 先定位到下拉框
+m = driver.find_element_by_id("ShippingMethod")
+# 再点击下拉框下的选项
+m.find_element_by_name("sheng").click()
+
+
+9. 上传文件
+#定位上传按钮，添加本地文件
+driver.find_element_by_name("file").send_keys('D:\\upload_file.txt')
+
+10. 弹窗的处理
+driver.switch_to_alert().accept()
+
+11. alert confirm prompt的处理
+1)text 返回alert、 confirm、 prompt中的文字信息
+
+2)accept 点击确认按钮
+
+3)dismiss 点击取消按钮，如果有的话
+
+4)send_keys 输入值，这个alert、 confirm没有对话框就不能用
+driver.switch_to_alert()将焦点切换到页面上的alert
 
 
 Webdriver中比较常用的操作元素的方法：
