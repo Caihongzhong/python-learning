@@ -84,6 +84,16 @@ Select(driver.find_element_by_name("sheng")).select_by_visible_text(u"广东省"
 Select(driver.find_element_by_name("shi")).select_by_visible_text(u"深圳市")
 Select(driver.find_element_by_name("xian")).select_by_visible_text(u"罗湖区")
 
+或者：
+from selenium.webdriver.support.select import Select
+
+monthDropDownElement = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_id("month"))
+Select(monthDropDownElement).select_by_visible_text("May")
+
+<option value="foo">Bar</option>
+select_by_visible_text("Bar")
+select_by_value("foo")
+
 方法二：
 # 先定位到下拉框
 m = driver.find_element_by_id("ShippingMethod")
@@ -108,7 +118,9 @@ driver.switch_to_alert().accept()
 4)send_keys 输入值，这个alert、 confirm没有对话框就不能用
 driver.switch_to_alert()将焦点切换到页面上的alert
 
-
+12. 滚动条的处理
+# For scrolling on a page
+driver.execute_script("scroll(1, 250);")
 Webdriver中比较常用的操作元素的方法：
 
 maximize_window() 浏览器最大化
