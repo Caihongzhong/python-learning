@@ -1,0 +1,43 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from selenium import webdriver  
+from selenium.webdriver.support.ui import WebDriverWait 
+import unittest
+
+# 登录博客园，使用unittest框架测试
+class LoginTest(unittest.TestCase):
+	def setUp(self):
+		self.driver = webdriver.Firefox() 
+		self.driver.get("http://www.cnblogs.com/")
+
+	# 测试用例：正确的用户名和密码登录
+	def test_login(self):
+		driver = self.driver 
+		username = "949654447iris"
+		password = "iris949654447"
+
+		login_link = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_link_text(u'登录'))
+		login_link.click()
+
+		loginElement = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_id("input1"))
+		passwordElement = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_id("input2"))
+		rememberElement = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_id("remember_me"))
+		submitElement = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_id("signin"))
+
+		loginElement.send_keys(username)
+		passwordElement.send_keys(password)
+		rememberElement.click()
+		submitElement.click()
+
+		# 验证登录成功
+		self.assertTrue(WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_link_text(u"我的博客")))
+
+	def tearDown(self):
+		self.driver.quit()
+
+
+if __name__ == '__main__':
+	unittest.main()
+
+
