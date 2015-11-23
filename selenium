@@ -33,6 +33,8 @@ http://www.testpub.cn/blog/
 
 https://www.youtube.com/watch?v=7z1RIJfjbnc
 
+https://www.youtube.com/watch?v=tDoWQ3Jtxqk&index=6&list=PLUY1lsOTtPeJNBuSweXS9pcSKbP4mr32S
+
 地址栏输入chrome://plugins/可以开启/禁用chrome所有插件
 
 6、WebDriver 提供的八种定位方法：
@@ -122,6 +124,8 @@ driver.switch_to_alert()将焦点切换到页面上的alert
 # For scrolling on a page
 driver.execute_script("scroll(1, 250);")
 Webdriver中比较常用的操作元素的方法：
+
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 maximize_window() 浏览器最大化
 
