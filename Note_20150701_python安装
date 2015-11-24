@@ -101,6 +101,9 @@ pip install SomePackage                      # latest version
 pip install SomePackage==1.0.4              # specific version
 pip install 'SomePackage>=1.0.4'
 
+8. 安装HTMLTestRunner
+http://tungwaiyip.info/software/HTMLTestRunner.html下载HTMLTestRunner.py文件,
+将该文件保存在python安装路径下的lib文件夹中。
 
 
 
