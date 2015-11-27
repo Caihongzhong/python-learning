@@ -127,6 +127,9 @@ Webdriver中比较常用的操作元素的方法：
 
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+13. 问题：上传文件时，如果没有input标签，如何实现自动化？
+如：百度云的上传文件
+
 maximize_window() 浏览器最大化
 
 set_window_size(480, 800) 设置浏览器宽、高 
