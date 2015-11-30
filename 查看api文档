@@ -1,0 +1,15 @@
+首先打开命令行，在dos窗口输入：
+
+ 
+
+1
+python -m pydoc -p 4567
+　　
+
+简单解释一下：
+
+python -m pydoc表示打开pydoc模块，pydoc是查看python文档的首选工具；
+-p 4567表示在4567端口上启动server;
+然后在浏览器中访问http://localhost:4567/，此时应该可以看到python中所有的Modules
+
+按ctrl+f，输入selenium,定位到selenium文档的链接，然后点击进入到http://localhost:4567/selenium.html这个页面
