@@ -1,0 +1,18 @@
+1. MySQL_python安装步骤
+下载MySQL_python-1.2.5-cp27-none-win_amd64.whl， pip install MySQL_python-1.2.5-cp27-none-win_amd64.whl，安装成功
+
+In [3]: import MySQLdb
+
+In [4]: help(MySQLdb.connect)
+Help on function Connect in module MySQLdb:
+
+Connect(*args, **kwargs)
+    Factory function for connections.Connection.
+
+2. 参考文档
+
+http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+
+http://www.mikusa.com/python-mysql-docs/index.html
+
+http://mysql-python.sourceforge.net/MySQLdb.html
