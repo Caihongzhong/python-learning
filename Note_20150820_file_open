@@ -5,3 +5,11 @@ the file constructor directly.
 
 file(name[, mode[, buffering]])
 constructor function for the file type.
+
+
+
+注：文件对象是可迭代的，可以直接在for循环中对他们进行操作
+
+with open('test.txt') as f:
+    for line in f:
+        print line
